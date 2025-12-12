@@ -9,10 +9,20 @@
 <body>
     <?php
         include "partial/cap.partial.php";
+
+        //include "partial/menu.partial.php";
+        //he tingut problemes i no he pogut esdevinar
+        //com fer funcionar lo de basename i $_SERVER['PHP_SELF']
     ?>
-    <?php
-        include "partial/menu.partial.php";
-    ?>
+    
+    <nav>
+        <ul>
+            <li><a href='../index.php?id=inici'>Inici</a></li>
+            <li><a href='../index.php?id=contacte'>Contacte</a></li>
+            <li><a href='../index.php?id=registre'>Registre</a></li>
+            <li><a href='../index.php?id=apadrina'>Apadrina</a></li>
+        </ul>
+    </nav>
     <main>
         <?php 
         //Declarem totes les variables i comprovem que

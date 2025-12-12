@@ -56,11 +56,11 @@
 
     <div>
         <label for="continent">CONTINENT:</label>
-        Europa:<input type="radio" name="continent" value="europa">
-        América:<input type="radio" name="continent" value="america">
-        Àsia:<input type="radio" name="continent" value="asia">
-        Àfrica:<input type="radio" name="continent" value="africa">
-        Oceanía:<input type="radio" name="continent" value="oceania">
+        Europa:<input type="radio" name="continent" value="Europa">
+        América:<input type="radio" name="continent" value="América">
+        Àsia:<input type="radio" name="continent" value="Àsia">
+        Àfrica:<input type="radio" name="continent" value="Àfrica">
+        Oceanía:<input type="radio" name="continent" value="Oceanía">
         <br><br>
     </div>
 

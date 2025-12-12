@@ -23,8 +23,22 @@
     <?php
         include "partial/cap.partial.php";
 
-        include "partial/menu.partial.php";
+        //include "partial/menu.partial.php";
 
+         //include "partial/menu.partial.php";
+        //he tingut problemes i no he pogut esdevinar
+        //com fer funcionar lo de basename i $_SERVER['PHP_SELF']
+    ?>
+    <nav>
+        <ul>
+            <li><a href='../index.php?id=inici'>Inici</a></li>
+            <li><a href='../index.php?id=contacte'>Contacte</a></li>
+            <li><a href='../index.php?id=registre'>Registre</a></li>
+            <li><a href='../index.php?id=apadrina'>Apadrina</a></li>
+        </ul>
+    </nav>
+
+    <?php
         //Inici del main
         echo "<main>";
         //AQUESTA PART TRACTA DE PASSAR PER POST TOTS ELS
@@ -165,41 +179,20 @@
         $continent = "";
         isset($_POST["continent"])? $continent = $_POST["continent"] : $continent = "";
 
-        if(strcmp($continent, "europa") == 0){
+        if(strcmp($continent, "Europa") == 0){
             echo "<div>CONTINENT: ".$continent."</div>";
-        }elseif(strcmp($continent, "america") == 0){
+        }elseif(strcmp($continent, "América") == 0){
             echo "<div>CONTINENT: ".$continent."</div>";
-        }elseif(strcmp($continent, "asia") == 0){
+        }elseif(strcmp($continent, "Àsia") == 0){
             echo "<div>CONTINENT: ".$continent."</div>";
-        }elseif(strcmp($continent, "africa") == 0){
+        }elseif(strcmp($continent, "Àfrica") == 0){
             echo "<div>CONTINENT: ".$continent."<7div>";
-        }elseif(strcmp($continent, "oceania") == 0){
+        }elseif(strcmp($continent, "Oceanía") == 0){
             echo "<div>CONTINENT: ".$continent."</div>";
         }else{
             echo "<div>CONTINENT: <em>*_Valor Buit_*</em></div>";
         }
 
-        //Aquest apartat es per a mostrar en imatges els animals
-        //seleccionats per el checkbox del registre.partial.php
-
-        $animal_noms = "";
-        if(isset($_POST["animal_mes"])){
-            $animal_noms = $_POST["animal_mes"];
-        }
-
-        //Utilitzem el metode count() per veure la quantitat
-        //de valors marcats als checkbox
-
-        $quantitatAnimals = count($animal_noms);
-        //Finalment amb l'ús de un for o foreach
-        //Mostrarem els animal que han sigut seleccionats
-
-        echo "<div>";
-        echo "<strong>ANIMAL DEL MES: </strong><br>";
-        for($i = 0; $i < $quantitatAnimals; $i++){
-            echo "<img src='../img/".$animal_noms[$i]."'> ";
-        } 
-        echo "</div>";
 
         include "dadesAnimals.php";
 

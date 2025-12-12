@@ -14,9 +14,9 @@
     ?>
 
     <ul>
-        <li><a href='index.php?id=inici'>Inici</a></li>
-        <li><a href='index.php?id=contacte'>Contacte</a></li>
-        <li><a href='index.php?id=registre'>Registre</a></li>
-        <li><a href='index.php?id=apadrina'>Apadrina</a></li>
+        <li><a href='./index.php?id=inici'>Inici</a></li>
+        <li><a href='./index.php?id=contacte'>Contacte</a></li>
+        <li><a href='./index.php?id=registre'>Registre</a></li>
+        <li><a href='./index.php?id=apadrina'>Apadrina</a></li>
     </ul>
 </nav>
