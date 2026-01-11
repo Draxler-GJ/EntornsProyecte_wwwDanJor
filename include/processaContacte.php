@@ -15,14 +15,11 @@
         //com fer funcionar lo de basename i $_SERVER['PHP_SELF']
     ?>
     
-    <nav>
-        <ul>
-            <li><a href='../index.php?id=inici'>Inici</a></li>
-            <li><a href='../index.php?id=contacte'>Contacte</a></li>
-            <li><a href='../index.php?id=registre'>Registre</a></li>
-            <li><a href='../index.php?id=apadrina'>Apadrina</a></li>
-        </ul>
-    </nav>
+    <?php
+
+        include 'partial/menu.partial.php';
+
+    ?>
     <main>
         <?php 
         //Declarem totes les variables i comprovem que

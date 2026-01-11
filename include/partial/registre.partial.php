@@ -79,6 +79,8 @@
         <label for="estil">Estil Registre:</label>
         Blau Ceruli<input type="radio" name="estil" value="azure">
         Roig Carnesí<input type="radio" name="estil" value="crimson">
+        Dorat Caótic<input type="radio" name="estil" value="gold">
+        Safir<input type="radio" name="estil" value="sapphire">
     </div>
 
     <div>

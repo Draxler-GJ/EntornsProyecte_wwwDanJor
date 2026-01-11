@@ -12,7 +12,12 @@
             echo "<link rel='stylesheet' type='text/css' href='../css/azure-style.css'>";
         }elseif(strcmp($estil,"crimson")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/crimson-style.css'>";
-        }else{
+        }elseif(strcmp($estil,"gold")==0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/gold-style.css'>";
+        }elseif(strcmp($estil,"sapphire")==0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/sapphire-style.css'>";
+        }
+        else{
             echo "<link rel='stylesheet' type='text/css' href='../css/style.css'>";
         }
 
@@ -29,14 +34,12 @@
         //he tingut problemes i no he pogut esdevinar
         //com fer funcionar lo de basename i $_SERVER['PHP_SELF']
     ?>
-    <nav>
-        <ul>
-            <li><a href='../index.php?id=inici'>Inici</a></li>
-            <li><a href='../index.php?id=contacte'>Contacte</a></li>
-            <li><a href='../index.php?id=registre'>Registre</a></li>
-            <li><a href='../index.php?id=apadrina'>Apadrina</a></li>
-        </ul>
-    </nav>
+    
+    <?php
+
+        include 'partial/menu.partial.php';
+
+    ?>
 
     <?php
         //Inici del main
@@ -123,7 +126,7 @@
             case "vint":
                 echo "<div>DONACIÓ: ".$donacio."</div>";
                 break;
-            case "cinc":
+            case "res":
                 echo "<div>DONACIÓ: ".$donacio."</div>";
                 break;
             default:
