@@ -4,7 +4,7 @@
        
         $formatoSemana = date("N");//Date N retorna de 1 a 7 los dias de la semana
         $semana = $dia_semana[$formatoSemana];
-        $formatoMes = date("m");//date m retorna de 1 a 12 los meses del año
+        $formatoMes = intval(date("m"));//date m retorna de 1 a 12 los meses del año como String -> uso de intval() para cambiar a valor entero
         $mes = $meses[$formatoMes];
 
         //date j  devuelve el dia del mes u date Y nos devuelve el año.
