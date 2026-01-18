@@ -99,3 +99,25 @@ input[required]:valid,
     textarea[required]:valid{
     border: limegreen 3px solid;
 }
+
+/*MENú SUMMARY DE ESTILS*/
+
+.estil-sessio {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 15%;
+    background-color: rgb(255, 255, 255);
+    border: #000 solid 2px;
+    z-index: 99;
+}
+
+.estil-sessio ul li{
+    list-style: none;
+    text-align: justify;
+    font-size: small;
+}
+
+/* input[value="azure"] span {
+    color:azure;
+} */

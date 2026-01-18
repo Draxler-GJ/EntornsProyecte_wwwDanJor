@@ -1,18 +1,65 @@
+<?php 
+    //Funcions per a capturar les sessions i que els estils
+    //es mantiguen al navegar entre págines
+    //session_start() i session_destroy()
+    //obrin i trenquen aquestes sessions
+    /*IMPORTANT! --> es necessari colocar-ho al inici de cada página*/
+    session_start();
+
+    //Crea la variable de session sempre i quant existisca
+    //i guradem en una altra variable el resultat de session si existix
+
+    //Açò es la primera vegada que ho faig i sense preguntar o buscar codi, no tenia ni idea
+    if(isset($_POST["estil"])){
+        $_SESSION["estil"] = $_POST["estil"];
+    }
+    
+    $estil = isset($_SESSION["estil"])? $_SESSION["estil"] : "";
+
+    $estil_actual = $estil;
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
+    <?php include "funcions.php";?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DADES DE CONTACTE</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
+     <?php
+        $estil = "";
+        isset($_POST["estil"])? $estil = $_POST["estil"]: $estil = "";
+
+        if(strcmp($estil,"azure")==0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/azure-style.css'>";
+        }elseif(strcmp($estil,"crimson")==0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/crimson-style.css'>";
+        }elseif(strcmp($estil,"gold")==0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/gold-style.css'>";
+        }elseif(strcmp($estil,"sapphire")==0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/sapphire-style.css'>";
+        }elseif(strcmp($estil, "chaos") == 0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/chaos-style.css'>";
+        }
+        else{
+            echo "<link rel='stylesheet' type='text/css' href='../css/style.css'>";
+        }
+
+
+    ?>
 </head>
 <body>
     <?php
+        include "partial/css.partial.php";
         include "partial/cap.partial.php";
 
         //include "partial/menu.partial.php";
         //he tingut problemes i no he pogut esdevinar
         //com fer funcionar lo de basename i $_SERVER['PHP_SELF']
+        //Solventat
     ?>
     
     <?php

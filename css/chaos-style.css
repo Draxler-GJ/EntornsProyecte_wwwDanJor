@@ -1,11 +1,12 @@
 /*ESTILS GENERALS*/
 body{
-    background-image: url(../img/leaf-background.jpg);
+    background-image: url(../img/neon-background.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
 }
 
 /*ESTILS PER A LA RESTA DE LA PÀGINA*/
@@ -14,7 +15,11 @@ header {
     width: 100%;
     position: sticky;
     top:0;
-    background: rgb(50,255,125);
+    background-image: url(../img/efecto_parallax.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
     height: 15vh;
     border-radius: 25px;
     text-align: center;
@@ -25,12 +30,15 @@ header > time{
     background-color: #00f;
     color: #fff;
     padding: 10px;
-    margin: 20% auto;
 }
 
 nav{
     width: 100%;
-    background: rgb(50,255,125);
+    background-image: url(../img/efecto_parallax.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
     height: 5vh;
     text-align: center;
     border-radius: 25px;
@@ -38,6 +46,7 @@ nav{
 
 a{
     text-decoration: none;
+    color: #fff;
     margin: 10px;
 }
 
@@ -49,7 +58,11 @@ nav > ul li{
 
 main{
     text-align: center;
-    background-color: rgb(50,255,125);
+    background-image: url(../img/efecto_parallax.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
     width: 100%;
     height: 100%;
     border-radius: 25px;
@@ -74,7 +87,11 @@ footer {
     width: 100%;
     position: static;
     bottom:0;
-    background: rgb(50,255,125);
+    background-image: url(../img/efecto_parallax.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
     height: 15vh;
     border-radius: 25px;
     text-align: center;
@@ -88,7 +105,7 @@ dl {
 /*ESTILS AMB PSEUDOCLASES*/
 
 a:hover{
-    color: #fff;
+    color: #a2d4f3;
     transition: 0.5s;
 }
 
@@ -110,7 +127,8 @@ input[required]:valid,
     top: 0;
     width: 15%;
     background-color: rgb(255, 255, 255);
-    border: #000 solid 2px;
+    color:#000;
+    border: #7e7b7b solid 2px;
     z-index: 99;
 }
 

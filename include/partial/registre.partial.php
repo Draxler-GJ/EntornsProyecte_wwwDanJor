@@ -75,6 +75,7 @@
         </div>
     </div>
 
+    <!-- Aquest menú de selecció d'estils quedara comentat pq ara passra al header de la pàgina
     <div>
         <label for="estil">Estil Registre:</label>
         Blau Ceruli<input type="radio" name="estil" value="azure">
@@ -82,6 +83,7 @@
         Dorat Caótic<input type="radio" name="estil" value="gold">
         Safir<input type="radio" name="estil" value="sapphire">
     </div>
+    -->
 
     <div>
         <input type="submit" name="enviar" value="Enviar">

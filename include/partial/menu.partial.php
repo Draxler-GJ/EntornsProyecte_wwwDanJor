@@ -1,6 +1,7 @@
 <nav>
     <!--Averiguar sobre variable $_SERVER['PHP_SELF'] i metode basename-->
     <?php
+    
         //comprovem qu el que be per GET per als enllaços
             $id = "";
             if(isset($_GET["id"])){
