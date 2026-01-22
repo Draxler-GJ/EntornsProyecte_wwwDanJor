@@ -25,7 +25,7 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-    <?php include "funcions.php";?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTRES D'USUARI</title>
@@ -234,3 +234,5 @@
     ?>
 </body>
 </html>
+
+<?php include "funcions.php";?>

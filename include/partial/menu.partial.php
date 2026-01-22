@@ -2,7 +2,7 @@
     <!--Averiguar sobre variable $_SERVER['PHP_SELF'] i metode basename-->
     <?php
     
-        //comprovem qu el que be per GET per als enllaços
+        //comprovem que el que be per GET per als enllaços
             $id = "";
             if(isset($_GET["id"])){
                 $id = $_GET["id"];
@@ -11,7 +11,7 @@
             
             //Declarem dos variables
             //No he aconseguit traureu per basename i $_SERVER
-            //Aconseguit!!!!! Nomes es debía comparar el comparar el que 
+            //Aconseguit!!!!! Nomes es debía comparar  que 
             //la varible server treia amb index.php i després 
             if(strcmp(basename($_SERVER['PHP_SELF']),'index.php')==0){
 

@@ -77,4 +77,4 @@
 </body>
 </html>
 
- <?php include "include/funcions.php";?>
+<?php include "include/funcions.php"; registreApartat($fitxer, $apartat);?>

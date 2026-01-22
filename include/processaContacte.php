@@ -24,7 +24,7 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-    <?php include "funcions.php";?>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DADES DE CONTACTE</title>
@@ -53,7 +53,7 @@
 </head>
 <body>
     <?php
-        include "partial/css.partial.php";
+        include "./partial/css.partial.php";
         include "partial/cap.partial.php";
 
         //include "partial/menu.partial.php";
@@ -196,3 +196,5 @@
     ?>
 </body>
 </html>
+
+<?php include "funcions.php";?>

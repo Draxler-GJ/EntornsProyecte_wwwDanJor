@@ -2,7 +2,7 @@
     //Aquest apartat contidra funcions que pasades
     //amb arguments o sense ells guardaran en un registe stots i cadascuna
     //de les acciones que realitze el usuari
-
+    //header("Location: wwwDanJorGom/index.php");
     /*
         -fopen() --> per a obrir arxius
         -fclose() --> per a tancar
@@ -13,22 +13,32 @@
 
         Version més potents de fgets i fputs
     */
-        
-    $ruta_fitxer ="../logs/navegacio.log";
+
+    $fitxer = "./logs/navegacio.log";
+    //$fitxer = __DIR__."/logs/navegacio.log";
     $apartat = isset($_GET["id"])? $apartat = $_GET["id"] : "";
-    $contador = 0;
-    // function registreApartat( $ruta_fitxer, $apartat){
+
+    function registreApartat($fitxer,$apartat){
          
-    //     $contador = 0;
-    //     $contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("m.d.y")." a l'hora ".date("H:i:s")."\n";
-    //     //while(!feof($contingut)){}
-    //     
-    //     //$contador += 1;
-    //     return $contingut;
-    //   }
+    $ruta_fitxer = fopen($fitxer,"a+");
+         
+        //while(!feof($ruta_fitxer)){}
+        //$contador += 1;
+        if($ruta_fitxer){
+            $contingut = " :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("m.d.y")." a l'hora ".date("H:i:s").PHP_EOL;
+            fwrite($ruta_fitxer,$contingut);
+            fclose($ruta_fitxer);
+            
+            return $contingut;
+        }else{
+            //die("El arxiu no s'ha creat correctament. ERROR FATAL");
+            return false;
+        } 
+         
+        
+    }
 
-    //   registreApartat($ruta_fitxer, $apartat);
-
-      $contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("m.d.y")." a l'hora ".date("H:i:s")."\n";
-      file_put_contents($ruta_fitxer, $contingut);
+    //Amb aço si aplega a funcionar;
+      //$contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("m.d.y")." a l'hora ".date("H:i:s")."\n";
+      //file_put_contents($ruta_fitxer, $contingut);
 ?>

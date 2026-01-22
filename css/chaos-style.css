@@ -27,8 +27,8 @@ header {
 
 header > time{
     border-radius: 20px;
-    background-color: #00f;
-    color: #fff;
+    background-image: linear-gradient(to left, #cecccc, #202020);
+    color: #f2f301;
     padding: 10px;
 }
 

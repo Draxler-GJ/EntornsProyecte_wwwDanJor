@@ -1,10 +1,20 @@
+<?php 
+    isset($_GET["id"])? $id = $_GET["id"] : "";
+    
+    if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0){
+        $id = "contacte";
+    }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
+        $id = "registra";
+    }
+?>
+
 <details class="estil-sessio">
     <summary><strong>MENÚ DE ESTILS</strong></summary>
-        <form method="post" action="">
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>?id=<?php echo $id;?>">
     <!-- En aquesta part he buscar per ia, w3s, inclús per blogs, pq no máclaria -->
      <!-- NO sabía que deuries ficar un echo amb checked per a que es quede marcat -->
       <!-- Fins ahí si, pero la varible server nomes en du a index.php -->
-<!--<?php echo $_SERVER['PHP_SELF']; ?>-->
+
             <ul>
                 <label for="estil">Tría un estil: </label> 
                 <li><input type="radio" name="estil" value="azure" <?php if($estil_actual == "azure") echo "checked";?> ><span>Blau Ceruli</span></li>
