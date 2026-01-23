@@ -235,4 +235,4 @@
 </body>
 </html>
 
-<?php include "funcions.php";?>
+<?php include "funcions.php"; registreAccionsUsuari($apartat, $usuari, $fitxer_usuari);?>

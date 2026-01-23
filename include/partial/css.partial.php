@@ -1,5 +1,5 @@
 <?php 
-    isset($_GET["id"])? $id = $_GET["id"] : "";
+    $id = isset($_GET["id"])? $_GET["id"] : "";
     
     if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0){
         $id = "contacte";

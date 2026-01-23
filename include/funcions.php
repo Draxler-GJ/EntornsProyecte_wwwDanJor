@@ -21,24 +21,51 @@
     function registreApartat($fitxer,$apartat){
          
     $ruta_fitxer = fopen($fitxer,"a+");
-         
-        //while(!feof($ruta_fitxer)){}
-        //$contador += 1;
-        if($ruta_fitxer){
-            $contingut = " :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("m.d.y")." a l'hora ".date("H:i:s").PHP_EOL;
-            fwrite($ruta_fitxer,$contingut);
-            fclose($ruta_fitxer);
+    //problema amb el contador
+    $contador = 0;   
+        while(!feof($ruta_fitxer)){
             
-            return $contingut;
-        }else{
-            //die("El arxiu no s'ha creat correctament. ERROR FATAL");
-            return false;
-        } 
-         
+            if($ruta_fitxer){
+                $contador++;
+                $contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("d.m.y")." a l'hora ".date("H:i:s").PHP_EOL;
+                fwrite($ruta_fitxer,$contingut);
+                fclose($ruta_fitxer);
+                return $contingut;
+            }else{
+                //die("El arxiu no s'ha creat correctament. ERROR FATAL");
+                return false;
+            } 
+        
+        }
         
     }
 
     //Amb aço si aplega a funcionar;
       //$contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("m.d.y")." a l'hora ".date("H:i:s")."\n";
       //file_put_contents($ruta_fitxer, $contingut);
+
+    //Mateixa funció per a els actes del usuari
+
+    $fitxer_usuari = "../logs/accionsUsuari.log";
+    $usuari = isset($_POST["correu"])? $_POST["correu"] : "<em>Valor_Vuit</em>";
+    
+    function registreAccionsUsuari($apartat, $usuari, $fitxer_usuari){
+        $ruta_fitUsuari = fopen($fitxer_usuari, "a+");
+        if($ruta_fitUsuari){
+            $accio = "L'usuari/a ".$usuari." ha realitzat l'acció ".$apartat." el día ".date("d.m.y")." a l'hora ".date("H:i:s").PHP_EOL;
+            fwrite($ruta_fitUsuari, $accio);
+            fclose($ruta_fitUsuari);
+
+            return $accio;
+        }else{
+            return false;
+        }
+    }
+
+
+    //Métode de inserció d'usuari a la base de dades
+    //Es fara un de la sentencuia Sql Insert per a ficar els valore
+    //Que poc a poc anirem colocant desde registre a processaRegistre
+    //la creació de la base de dades aniran apart
+    //insereixUsuari()
 ?>
