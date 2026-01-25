@@ -22,7 +22,7 @@
          
     $ruta_fitxer = fopen($fitxer,"a+");
     //problema amb el contador
-    $contador = 0;   
+    $contador = count(file($fitxer));   
         while(!feof($ruta_fitxer)){
             
             if($ruta_fitxer){
@@ -30,6 +30,12 @@
                 $contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("d.m.y")." a l'hora ".date("H:i:s").PHP_EOL;
                 fwrite($ruta_fitxer,$contingut);
                 fclose($ruta_fitxer);
+                //crear el backup
+                    // if(count(file($fitxer)) >= 10){
+                    //     $fitxer_backup = fopen("./logs/backup/backup_".date("d.m.y")."_".date("H:i:s").".log", "r+");
+                    //     $copia_fitxer = fgets($ruta_fitxer);
+                    //     copy($copia_fitxer,$fitxer_backup);
+                    // }
                 return $contingut;
             }else{
                 //die("El arxiu no s'ha creat correctament. ERROR FATAL");
@@ -37,6 +43,8 @@
             } 
         
         }
+
+        
         
     }
 
@@ -63,9 +71,16 @@
     }
 
 
+    //Métode de borrat de variables de sessío
+    //per ales págines de processaContacte i
+    //processaRegistre
+    //esborrarSessions(){}
+
+
+
     //Métode de inserció d'usuari a la base de dades
     //Es fara un de la sentencuia Sql Insert per a ficar els valore
     //Que poc a poc anirem colocant desde registre a processaRegistre
     //la creació de la base de dades aniran apart
-    //insereixUsuari()
+    //insereixUsuari(){}
 ?>

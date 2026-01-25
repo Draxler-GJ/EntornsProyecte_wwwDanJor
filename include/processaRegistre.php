@@ -1,3 +1,5 @@
+<!--Queda pendent crear un div que mostre els animals-->
+
 <?php 
     //Funcions per a capturar les sessions i que els estils
     //es mantiguen al navegar entre págines
@@ -18,6 +20,49 @@
 
     $estil_actual = $estil;
 
+    //Variables de sessió de la página de processaRegistre.php
+
+    //Nom i cogmons
+    $_SESSION["nom"] = $_POST["nom"];
+    $_SESSION["cognoms"] = $_POST["cognoms"];
+
+    //Adreça
+
+    $_SESSION["adresa"] = $_POST["adresa"];
+
+    //Correu
+
+    $_SESSION["correu"] = $_POST["correu"];
+
+
+    //Contraseya
+
+    $_SESSION["password"] = $_POST["password"];
+
+
+    //Teléfon
+
+    $_SESSION["telefon"] = $_POST["telefon"];
+
+
+    //Donació
+
+    $_SESSION["donacio"] = $_POST["donacio"];
+
+    //Animal a apadrinar
+
+    $_SESSION["animal"] = $_POST["animal"];
+
+    //Continent
+
+    $_SESSION["continent"] = $_POST["continent"];
+
+    //Animal en perill 
+    //Açi s'utilitzara els mètodes serialize i uinserialize per 
+    //a guardar en memòria dels dades dels arrays
+
+    $_SESSION["taula_animal"] = $_POST["taula_animal"];
+
 ?>
 
 
@@ -29,6 +74,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTRES D'USUARI</title>
+    <link rel="icon" type="image/x-icon" href="../img/kiwi-background.jpeg">
     <?php
         $estil = "";
         isset($_POST["estil"])? $estil = $_POST["estil"]: $estil = "";
@@ -68,10 +114,12 @@
         include 'partial/menu.partial.php';
 
     ?>
-
+    <!-- Açi anira el text -> Usuari inserit correctamwent en la base de dades-->
     <?php
         //Inici del main
         echo "<main>";
+
+        echo "<h1>DADES DE REGISTRE D'USUARI</h1>";
         //AQUESTA PART TRACTA DE PASSAR PER POST TOTS ELS
         //VALOSR PASSAT DEL FORMULARI
         //Camp Nom

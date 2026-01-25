@@ -1,3 +1,5 @@
+<!--Queda fer el array en taula de cada fragfmen del textarea-->
+
 <?php 
     //Funcions per a capturar les sessions i que els estils
     //es mantiguen al navegar entre págines
@@ -18,6 +20,27 @@
 
     $estil_actual = $estil;
 
+    //Variables de sessió de la página de processaContacte.php
+
+    //Correu
+
+    $_SESSION["correu"] = $_POST["correu"];
+
+
+    //Assumpte
+
+    $_SESSION["assumpte"] = $_POST["assumpte"];
+
+
+    //Missage
+
+    $_SESSION["missatge"] = $_POST["missatge"];
+
+
+    //Puntuació i rang de puntaució
+
+    $_SESSION["punt"] = $_POST["punt"];
+    $_SESSION["rango"] = $_POST["rango"];
 ?>
 
 
@@ -28,7 +51,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DADES DE CONTACTE</title>
-    <!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
+    <link rel="icon" type="image/x-icon" href="../img/kiwi-background.jpeg">
      <?php
         $estil = "";
         isset($_POST["estil"])? $estil = $_POST["estil"]: $estil = "";
@@ -68,7 +91,9 @@
 
     ?>
     <main>
-        <?php 
+        <?php
+
+            echo "<h1>DADES DE CONTACTE</h1>";
         //Declarem totes les variables i comprovem que
         //per motius de seguretat, no s'inxerix codig malicios
             $correu = "";
