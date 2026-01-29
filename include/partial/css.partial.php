@@ -7,9 +7,9 @@
         $id = "registra";
     }
 ?>
-
-<details class="estil-sessio">
-    <summary><strong>MENÚ DE ESTILS</strong></summary>
+<button type="button" onclick="mostraMenu()">Menú d'estils</button>
+<div class="estil-sessio" id="colors">
+    <strong>MENÚ DE ESTILS</strong>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>?id=<?php echo $id;?>">
     <!-- En aquesta part he buscar per ia, w3s, inclús per blogs, pq no máclaria -->
      <!-- NO sabía que deuries ficar un echo amb checked per a que es quede marcat -->
@@ -27,4 +27,4 @@
             </ul>
 
         </form>
-</details>
+</div>

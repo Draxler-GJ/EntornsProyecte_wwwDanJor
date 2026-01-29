@@ -25,44 +25,52 @@
     //Nom i cogmons
     $_SESSION["nom"] = $_POST["nom"];
     $_SESSION["cognoms"] = $_POST["cognoms"];
+    $nom_sessio = isset($_SESSION["nom"])? $_SESSION["nom"] : "";
+    $cognom_sessio = isset($_SESSION["cognoms"])? $_SESSION["cognom"] : "";
 
     //Adreça
 
     $_SESSION["adresa"] = $_POST["adresa"];
+    $adresa_sessio = isset($_SESSION["adresa"])? $_SESSION["adresa"] : "";
 
     //Correu
 
     $_SESSION["correu"] = $_POST["correu"];
-
+    $correu_sessio = isset($_SESSION["correu"])? $_SESSION["correu"] :"";
 
     //Contraseya
 
     $_SESSION["password"] = $_POST["password"];
+    $pass_sessio = isset($_SESSION["password"])? $_SESSION["password"] : "";
 
 
     //Teléfon
 
     $_SESSION["telefon"] = $_POST["telefon"];
+    $telefon_sessio = isset($_SESSION["telefon"])? $_SESSION["telefon"] : "";
 
 
     //Donació
 
     $_SESSION["donacio"] = $_POST["donacio"];
+    $donacio_sessio = isset($_SESSION["donacio"])? $_SESSION["donacio"] : "";
 
     //Animal a apadrinar
 
     $_SESSION["animal"] = $_POST["animal"];
+    $animal_sessio = isset($_SESSION["animal"])? $_SESSION["animal"] : "";
 
     //Continent
 
     $_SESSION["continent"] = $_POST["continent"];
+    $conti_sessio = isset($_SESSION["continent"])? $_SESSION["continent"] : "";
 
     //Animal en perill 
     //Açi s'utilitzara els mètodes serialize i uinserialize per 
     //a guardar en memòria dels dades dels arrays
 
     $_SESSION["taula_animal"] = $_POST["taula_animal"];
-
+    //preguntar
 ?>
 
 
@@ -79,15 +87,15 @@
         $estil = "";
         isset($_POST["estil"])? $estil = $_POST["estil"]: $estil = "";
 
-        if(strcmp($estil,"azure")==0){
+        if(strcmp($estil_actual,"azure")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/azure-style.css'>";
-        }elseif(strcmp($estil,"crimson")==0){
+        }elseif(strcmp($estil_actual,"crimson")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/crimson-style.css'>";
-        }elseif(strcmp($estil,"gold")==0){
+        }elseif(strcmp($estil_actual,"gold")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/gold-style.css'>";
-        }elseif(strcmp($estil,"sapphire")==0){
+        }elseif(strcmp($estil_actual,"sapphire")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/sapphire-style.css'>";
-        }elseif(strcmp($estil, "chaos") == 0){
+        }elseif(strcmp($estil_actual, "chaos") == 0){
             echo "<link rel='stylesheet' type='text/css' href='../css/chaos-style.css'>";
         }
         else{
@@ -96,6 +104,7 @@
 
 
     ?>
+    <script src="../script/script.js"></script>
 </head>
 <body>
     <?php
@@ -127,7 +136,7 @@
         if(isset($_POST["nom"])){
             $nom = trim(htmlspecialchars($_POST["nom"]));
         }
-        echo "<div>NOM: ".$nom."</div>";
+        echo "<div>NOM: ".$nom_sessio."</div>";
 
         //Camp Cognoms
         $cognoms = "";
@@ -162,7 +171,7 @@
             //Reutilitce codi de processaContacte.php
             $correu = trim(htmlspecialchars($_POST["correu"]));
         }
-        echo "<div>CORREU ELECTRÓNIC: ".$correu."</div>";
+        echo "<div>CORREU ELECTRÓNIC: ".$correu_sessio."</div>";
 
         //Camp Password
         $password = "";
@@ -192,7 +201,7 @@
             $donacio = trim(htmlspecialchars($_POST["donacio"]));
         }
 
-        switch($donacio){
+        switch($donacio_sessio){
             case "cinc":
                 echo "<div>DONACIÓ: ".$donacio."</div>";
                 break;
@@ -217,7 +226,7 @@
             $animal = trim(htmlspecialchars($_POST["animal"]));
         }
 
-        switch($animal){
+        switch($animal_sessio){
             case "goril·la":
                 echo "<div>";
                 echo "<strong>ANIMAL A APADRINAR: GORIL·LA ALBÍ</strong><br>";
@@ -258,16 +267,16 @@
         $continent = "";
         isset($_POST["continent"])? $continent = $_POST["continent"] : $continent = "";
 
-        if(strcmp($continent, "Europa") == 0){
-            echo "<div>CONTINENT: ".$continent."</div>";
-        }elseif(strcmp($continent, "América") == 0){
-            echo "<div>CONTINENT: ".$continent."</div>";
-        }elseif(strcmp($continent, "Àsia") == 0){
-            echo "<div>CONTINENT: ".$continent."</div>";
-        }elseif(strcmp($continent, "Àfrica") == 0){
-            echo "<div>CONTINENT: ".$continent."<7div>";
-        }elseif(strcmp($continent, "Oceanía") == 0){
-            echo "<div>CONTINENT: ".$continent."</div>";
+        if(strcmp($conti_sessio, "Europa") == 0){
+            echo "<div>CONTINENT: ".$conti_sessio."</div>";
+        }elseif(strcmp($conti_sessio, "América") == 0){
+            echo "<div>CONTINENT: ".$conti_sessio."</div>";
+        }elseif(strcmp($conti_sessio, "Àsia") == 0){
+            echo "<div>CONTINENT: ".$conti_sessio."</div>";
+        }elseif(strcmp($conti_sessio, "Àfrica") == 0){
+            echo "<div>CONTINENT: ".$conti_sessio."<7div>";
+        }elseif(strcmp($conti_sessio, "Oceanía") == 0){
+            echo "<div>CONTINENT: ".$conti_sessio."</div>";
         }else{
             echo "<div>CONTINENT: <em>*_Valor Buit_*</em></div>";
         }

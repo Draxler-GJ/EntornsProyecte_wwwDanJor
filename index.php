@@ -42,15 +42,15 @@
         $estil = "";
         isset($_POST["estil"])? $estil = $_POST["estil"]: $estil = "";
 
-        if(strcmp($estil,"azure")==0){
+        if(strcmp($estil_actual,"azure")==0){
             echo "<link rel='stylesheet' type='text/css' href='./css/azure-style.css'>";
-        }elseif(strcmp($estil,"crimson")==0){
+        }elseif(strcmp($estil_actual,"crimson")==0){
             echo "<link rel='stylesheet' type='text/css' href='./css/crimson-style.css'>";
-        }elseif(strcmp($estil,"gold")==0){
+        }elseif(strcmp($estil_actual,"gold")==0){
             echo "<link rel='stylesheet' type='text/css' href='./css/gold-style.css'>";
-        }elseif(strcmp($estil,"sapphire")==0){
+        }elseif(strcmp($estil_actual,"sapphire")==0){
             echo "<link rel='stylesheet' type='text/css' href='./css/sapphire-style.css'>";
-        }elseif(strcmp($estil, "chaos") == 0){
+        }elseif(strcmp($estil_actual, "chaos") == 0){
             echo "<link rel='stylesheet' type='text/css' href='./css/chaos-style.css'>";
         }
         else{
@@ -59,6 +59,8 @@
 
 
     ?>
+
+    <script src="./script/script.js"></script>
 </head>
 <body>
     <?php

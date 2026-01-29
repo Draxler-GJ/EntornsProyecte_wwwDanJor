@@ -30,17 +30,18 @@
                 $contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("d.m.y")." a l'hora ".date("H:i:s").PHP_EOL;
                 fwrite($ruta_fitxer,$contingut);
                 fclose($ruta_fitxer);
-                //crear el backup
-                    // if(count(file($fitxer)) >= 10){
-                    //     $fitxer_backup = fopen("./logs/backup/backup_".date("d.m.y")."_".date("H:i:s").".log", "r+");
-                    //     $copia_fitxer = fgets($ruta_fitxer);
-                    //     copy($copia_fitxer,$fitxer_backup);
-                    // }
                 return $contingut;
             }else{
                 //die("El arxiu no s'ha creat correctament. ERROR FATAL");
                 return false;
-            } 
+            }
+            
+            //crear el backup
+                    if(count(file($ruta_fitxer)) >= 10){
+                         $fitxer_backup = fopen("./logs/backup/backup_".date("d.m.y")."_".date("H:i:s").".log", "a+");
+                         $copia_fitxer = fgets($ruta_fitxer);
+                         copy($copia_fitxer,$fitxer_backup);
+                    }
         
         }
 

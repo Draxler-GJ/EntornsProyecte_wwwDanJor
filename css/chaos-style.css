@@ -130,6 +130,7 @@ input[required]:valid,
     color:#000;
     border: #7e7b7b solid 2px;
     z-index: 99;
+    display: none;
 }
 
 .estil-sessio ul li{

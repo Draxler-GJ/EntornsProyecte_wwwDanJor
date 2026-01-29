@@ -25,22 +25,29 @@
     //Correu
 
     $_SESSION["correu"] = $_POST["correu"];
+    $correu_sessio = isset($_SESSION["correu"])? $_SESSION["correu"] : "";
 
 
     //Assumpte
 
     $_SESSION["assumpte"] = $_POST["assumpte"];
-
+    $assumpte_sessio = isset($_SESSION["assumpte"])? $_SESSION["assumpte"] : "";
 
     //Missage
 
     $_SESSION["missatge"] = $_POST["missatge"];
+    $miss_sessio = isset($_SESSION["missatge"])? $_SESSION["missatge"] : "";
 
 
     //Puntuació i rang de puntaució
 
     $_SESSION["punt"] = $_POST["punt"];
     $_SESSION["rango"] = $_POST["rango"];
+
+    $punt_sessio = isset($_SESSION["punt"])? $_SESSION["punt"] : "";
+    $rang_sessio = isset($_SESSION["rango"])? $_SESSION["rango"] : "";
+
+    //Subtituir les variables de $_POST -> $_SESSION
 ?>
 
 
@@ -56,15 +63,15 @@
         $estil = "";
         isset($_POST["estil"])? $estil = $_POST["estil"]: $estil = "";
 
-        if(strcmp($estil,"azure")==0){
+        if(strcmp($estil_actual,"azure")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/azure-style.css'>";
-        }elseif(strcmp($estil,"crimson")==0){
+        }elseif(strcmp($estil_actual,"crimson")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/crimson-style.css'>";
-        }elseif(strcmp($estil,"gold")==0){
+        }elseif(strcmp($estil_actual,"gold")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/gold-style.css'>";
-        }elseif(strcmp($estil,"sapphire")==0){
+        }elseif(strcmp($estil_actual,"sapphire")==0){
             echo "<link rel='stylesheet' type='text/css' href='../css/sapphire-style.css'>";
-        }elseif(strcmp($estil, "chaos") == 0){
+        }elseif(strcmp($estil_actual, "chaos") == 0){
             echo "<link rel='stylesheet' type='text/css' href='../css/chaos-style.css'>";
         }
         else{
@@ -73,6 +80,7 @@
 
 
     ?>
+    <script src="../script/script.js"></script>
 </head>
 <body>
     <?php
@@ -105,13 +113,13 @@
                 //contavte i registre
                 $correu = trim(htmlspecialchars($_POST["correu"]));
             }
-            echo "<div>CORREU ELECTRÓNIC: ".$correu."</div>";
+            echo "<div>CORREU ELECTRÓNIC: ".$correu_sessio."</div>";
 
             $assumpte = "";
             if(isset($_POST["assumpte"])){
                 $assumpte = trim(htmlspecialchars($_POST["assumpte"]));
             }
-            echo "<div>ASSUMPTE: ".$assumpte."</div>";
+            echo "<div>ASSUMPTE: ".$assumpte_sessio."</div>";
 
             //El missatge del textare es mostrara de diferents estils segons 
             //si es mayuscula o minuscula
@@ -121,7 +129,7 @@
                 $missatge = trim(htmlspecialchars($_POST["missatge"]));
             }
             //explode divideix la cadena en diferents parts per a crear un array
-            $missatgeCom = explode(" ",$missatge);
+            $missatgeCom = explode(" ",$miss_sessio);
 
             echo "<div>MISSATGE: ";
             echo "<ul>";
@@ -166,33 +174,33 @@
             }
             
             echo "<div>";
-                switch($punt){
+                switch($punt_sessio){
                     case "1":
-                        $resultat = $punt * $rang;
-                        echo "<div>PUNTUACIÓ: ".$punt." * ".$rang;
+                        $resultat = $punt_sessio * $rang_sessio;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy1."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     case "2":
-                        $resultat = $punt * $rang;
-                        echo "<div>PUNTUACIÓ: ".$punt." * ".$rang;
+                        $resultat = $punt_sessio * $rang_sessio;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy1."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     case "3":
-                        $resultat = $punt * $rang;
-                        echo "<div>PUNTUACIÓ: ".$punt." * ".$rang;
+                        $resultat = $punt_sessio * $rang_sessio;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy2."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     case "4":
-                        $resultat = $punt * $rang;
+                        $resultat = $punt_sessio * $rang_sessio;
                         echo "<div>PUNTUACIÓ: ".$punt." * ".$rang;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy2."' width='20px' title='capy1' alt='capy1'>";
@@ -200,15 +208,15 @@
                         echo "</div>";
                         break;
                     case "5":
-                        $resultat = $punt * $rang;
-                        echo "<div>PUNTUACIÓ: ".$punt." * ".$rang;
+                        $resultat = $punt_sessio * $rang_sessio;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy3."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     default:
-                        echo "<div>PUNTUACIÓ: ".$punt;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessio;
                         echo "<img src='".$capy3."' width='20px' title='capy1' alt='capy1'>";
                         echo "</div>";
                         break;
