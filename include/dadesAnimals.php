@@ -52,20 +52,20 @@
                         $fotoRomansaurus = "romansaurus.png";
                         $fotoRes = "kiwi-background.jpeg";
 
-                        for($i = 0; $i < count($taulaAnimals); $i++){    
+                        for($i = 0; $i < count($taulerAni_sessio); $i++){    
                                 
-                                foreach($arrayAnimals[$taulaAnimals[$i]] as $clau => $animalet){
+                                foreach($arrayAnimals[$taulerAni_sessio[$i]] as $clau => $animalet){
                                         echo "<tr>";
                                         echo "<td rowspan='2'>";
-                                                if($taulaAnimals[$i] == "goril·la"){
+                                                if($taulerAni_sessio[$i] == "goril·la"){
                                                         echo "<img src='../img/".$fotoGorila."' width='100px'>";
-                                                }elseif($taulaAnimals[$i] == "linx"){
+                                                }elseif($taulerAni_sessio[$i] == "linx"){
                                                         echo "<img src='../img/".$fotoLynx."' width='100px'>";   
-                                                }elseif($taulaAnimals[$i] == "axolot"){
+                                                }elseif($taulerAni_sessio[$i] == "axolot"){
                                                         echo "<img src='../img/".$fotoAxolot."' width='100px'>";   
-                                                }elseif($taulaAnimals[$i] == "dodo"){
+                                                }elseif($taulerAni_sessio[$i] == "dodo"){
                                                         echo "<img src='../img/".$fotoDodo."' width='100px'>";   
-                                                }elseif($taulaAnimals[$i] == "romansaurus"){
+                                                }elseif($taulerAni_sessio[$i] == "romansaurus"){
                                                         echo "<img src='../img/".$fotoRomansaurus."' width='100px'>";   
                                                 }
                                         echo "</td>";

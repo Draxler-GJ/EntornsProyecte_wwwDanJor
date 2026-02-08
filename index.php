@@ -79,4 +79,4 @@
 </body>
 </html>
 
-<?php include "include/funcions.php"; registreApartat($fitxer, $apartat);?>
+<?php include "include/funcions.php"; registreApartat($fitxer, $apartat); ?>

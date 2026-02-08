@@ -29,6 +29,13 @@
                 $contador++;
                 $contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("d.m.y")." a l'hora ".date("H:i:s").PHP_EOL;
                 fwrite($ruta_fitxer,$contingut);
+                //crear el backup
+                    if(count(file($fitxer)) >= 20){
+                        $fitxer_backup = "./logs/backup/backup_".date("d.m.y")."_".date("H:i:s").".log";
+                        $ruta_fitxer_backup = fopen($fitxer_backup, "a+");
+                         //$copia_fitxer = fgets($ruta_fitxer);
+                        copy($fitxer,$fitxer_backup);
+                    }
                 fclose($ruta_fitxer);
                 return $contingut;
             }else{
@@ -36,12 +43,7 @@
                 return false;
             }
             
-            //crear el backup
-                    if(count(file($ruta_fitxer)) >= 10){
-                         $fitxer_backup = fopen("./logs/backup/backup_".date("d.m.y")."_".date("H:i:s").".log", "a+");
-                         $copia_fitxer = fgets($ruta_fitxer);
-                         copy($copia_fitxer,$fitxer_backup);
-                    }
+            
         
         }
 
@@ -54,14 +56,27 @@
       //file_put_contents($ruta_fitxer, $contingut);
 
     //Mateixa funció per a els actes del usuari
+    $apartat_accio = "";
+    if(isset($_GET["id"])){
+        $apartat_accio = $_GET["id"]; 
+    }
+
+
+
+    if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0){
+        $apartat_accio = "contacte";
+    }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
+        $apartat_accio = "registra";
+    }
+
 
     $fitxer_usuari = "../logs/accionsUsuari.log";
     $usuari = isset($_POST["correu"])? $_POST["correu"] : "<em>Valor_Vuit</em>";
     
-    function registreAccionsUsuari($apartat, $usuari, $fitxer_usuari){
+    function registreAccionsUsuari($apartat_accio, $usuari, $fitxer_usuari){
         $ruta_fitUsuari = fopen($fitxer_usuari, "a+");
         if($ruta_fitUsuari){
-            $accio = "L'usuari/a ".$usuari." ha realitzat l'acció ".$apartat." el día ".date("d.m.y")." a l'hora ".date("H:i:s").PHP_EOL;
+            $accio = "L'usuari/a ".$usuari." ha realitzat l'acció ".strtoupper($apartat_accio)." el día ".date("d.m.y")." a l'hora ".date("H:i:s").PHP_EOL;
             fwrite($ruta_fitUsuari, $accio);
             fclose($ruta_fitUsuari);
 
@@ -75,7 +90,13 @@
     //Métode de borrat de variables de sessío
     //per ales págines de processaContacte i
     //processaRegistre
-    //esborrarSessions(){}
+    function esborrarSessions(){
+        if(strcmp(basename($_SERVER['PHP_SELF']), "index.php") == 0){
+            //Preguntyar si header() funciona açi
+            session_unset();
+            session_destroy();
+        }
+    }
 
 
 
@@ -83,5 +104,19 @@
     //Es fara un de la sentencuia Sql Insert per a ficar els valore
     //Que poc a poc anirem colocant desde registre a processaRegistre
     //la creació de la base de dades aniran apart
-    //insereixUsuari(){}
+    
+
+    function insereixUsuari($nom_sessioActual ,$cognoms_sessioActual ,$correu_sessioActual ,$pass_sessioActual){
+
+        require "../db/conexio.php";
+        //realitzem la inserció de dades en la base de dades
+        //la conexió es realitzara desde altre fitxer
+           
+    }
+
+    //Métode per comprobar que el correu introuit a la base de dades ja existeix
+    function usuariExistent(){
+
+        require "../db/select_db.php";
+    }
 ?>

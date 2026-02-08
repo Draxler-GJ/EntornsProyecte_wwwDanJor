@@ -1,5 +1,7 @@
 <!--Queda fer el array en taula de cada fragfmen del textarea-->
 
+<!--Les variables de POST ara son subtituides per les variables de SESSIO -->
+
 <?php 
     //Funcions per a capturar les sessions i que els estils
     //es mantiguen al navegar entre págines
@@ -24,28 +26,39 @@
 
     //Correu
 
-    $_SESSION["correu"] = $_POST["correu"];
+    if(isset($_POST["correu"])){
+        $_SESSION["correu"] = $_POST["correu"];
+    }
     $correu_sessio = isset($_SESSION["correu"])? $_SESSION["correu"] : "";
-
+    $correu_sessioCont = $correu_sessio;
 
     //Assumpte
 
-    $_SESSION["assumpte"] = $_POST["assumpte"];
+    if (isset($_POST["assumpte"])) {
+        $_SESSION["assumpte"] = $_POST["assumpte"];
+    }
     $assumpte_sessio = isset($_SESSION["assumpte"])? $_SESSION["assumpte"] : "";
-
+    $assumpte_sessioCont = $assumpte_sessio;
+    
     //Missage
 
-    $_SESSION["missatge"] = $_POST["missatge"];
+    if (isset($_POST["missatge"])) {
+        $_SESSION["missatge"] = $_POST["missatge"];
+    }
     $miss_sessio = isset($_SESSION["missatge"])? $_SESSION["missatge"] : "";
-
+    $miss_sessioCont = $miss_sessio;
 
     //Puntuació i rang de puntaució
 
-    $_SESSION["punt"] = $_POST["punt"];
-    $_SESSION["rango"] = $_POST["rango"];
+    if(isset($_POST["punt"]) && isset($_POST["rango"])){
+        $_SESSION["punt"] = $_POST["punt"];
+        $_SESSION["rango"] = $_POST["rango"];
+    }
 
     $punt_sessio = isset($_SESSION["punt"])? $_SESSION["punt"] : "";
+    $punt_sessioCont = $punt_sessio;
     $rang_sessio = isset($_SESSION["rango"])? $_SESSION["rango"] : "";
+    $rang_sessioCont = $rang_sessio;
 
     //Subtituir les variables de $_POST -> $_SESSION
 ?>
@@ -113,13 +126,13 @@
                 //contavte i registre
                 $correu = trim(htmlspecialchars($_POST["correu"]));
             }
-            echo "<div>CORREU ELECTRÓNIC: ".$correu_sessio."</div>";
+            echo "<div>CORREU ELECTRÓNIC: ".$correu_sessioCont."</div>";
 
             $assumpte = "";
             if(isset($_POST["assumpte"])){
                 $assumpte = trim(htmlspecialchars($_POST["assumpte"]));
             }
-            echo "<div>ASSUMPTE: ".$assumpte_sessio."</div>";
+            echo "<div>ASSUMPTE: ".$assumpte_sessioCont."</div>";
 
             //El missatge del textare es mostrara de diferents estils segons 
             //si es mayuscula o minuscula
@@ -129,7 +142,7 @@
                 $missatge = trim(htmlspecialchars($_POST["missatge"]));
             }
             //explode divideix la cadena en diferents parts per a crear un array
-            $missatgeCom = explode(" ",$miss_sessio);
+            $missatgeCom = explode(" ",$miss_sessioCont);
 
             echo "<div>MISSATGE: ";
             echo "<ul>";
@@ -174,49 +187,49 @@
             }
             
             echo "<div>";
-                switch($punt_sessio){
+                switch($punt_sessioCont){
                     case "1":
-                        $resultat = $punt_sessio * $rang_sessio;
-                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
+                        $resultat = $punt_sessioCont * $rang_sessioCont;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessioCont." * ".$rang_sessioCont;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy1."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     case "2":
-                        $resultat = $punt_sessio * $rang_sessio;
-                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
+                        $resultat = $punt_sessioCont * $rang_sessioCont;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessioCont." * ".$rang_sessioCont;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy1."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     case "3":
-                        $resultat = $punt_sessio * $rang_sessio;
-                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
+                        $resultat = $punt_sessioCont * $rang_sessioCont;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessioCont." * ".$rang_sessioCont;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy2."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     case "4":
-                        $resultat = $punt_sessio * $rang_sessio;
-                        echo "<div>PUNTUACIÓ: ".$punt." * ".$rang;
+                        $resultat = $punt_sessioCont * $rang_sessioCont;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessioCont." * ".$rang_sessioCont;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy2."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     case "5":
-                        $resultat = $punt_sessio * $rang_sessio;
-                        echo "<div>PUNTUACIÓ: ".$punt_sessio." * ".$rang_sessio;
+                        $resultat = $punt_sessioCont * $rang_sessioCont;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessioCont." * ".$rang_sessioCont;
                         for($i = 0; $i < $resultat; $i++){
                             echo "<img src='".$capy3."' width='20px' title='capy1' alt='capy1'>";
                         }
                         echo "</div>";
                         break;
                     default:
-                        echo "<div>PUNTUACIÓ: ".$punt_sessio;
+                        echo "<div>PUNTUACIÓ: ".$punt_sessioCont;
                         echo "<img src='".$capy3."' width='20px' title='capy1' alt='capy1'>";
                         echo "</div>";
                         break;
@@ -230,4 +243,4 @@
 </body>
 </html>
 
-<?php include "funcions.php"; registreAccionsUsuari($apartat, $usuari, $fitxer_usuari);?>
+<?php include "funcions.php"; registreAccionsUsuari($apartat_accio, $usuari, $fitxer_usuari); esborrarSessions();?>

@@ -1,5 +1,7 @@
 <!--Queda pendent crear un div que mostre els animals-->
 
+<!--Les variables de POST ara son subtituides per les variables de SESSIO -->
+
 <?php 
     //Funcions per a capturar les sessions i que els estils
     //es mantiguen al navegar entre págines
@@ -23,53 +25,80 @@
     //Variables de sessió de la página de processaRegistre.php
 
     //Nom i cogmons
-    $_SESSION["nom"] = $_POST["nom"];
-    $_SESSION["cognoms"] = $_POST["cognoms"];
+    if(isset($_POST["nom"]) && isset($_POST["cognoms"])){
+        $_SESSION["nom"] = $_POST["nom"];
+        $_SESSION["cognoms"] = $_POST["cognoms"];
+    }
     $nom_sessio = isset($_SESSION["nom"])? $_SESSION["nom"] : "";
-    $cognom_sessio = isset($_SESSION["cognoms"])? $_SESSION["cognom"] : "";
+    $cognom_sessio = isset($_SESSION["cognoms"])? $_SESSION["cognoms"] : "";
+
+    $nom_sessioActual = $nom_sessio;
+    $cognoms_sessioActual = $cognom_sessio;
 
     //Adreça
 
-    $_SESSION["adresa"] = $_POST["adresa"];
+    if(isset($_POST["adresa"])){
+        $_SESSION["adresa"] = $_POST["adresa"];
+    }    
     $adresa_sessio = isset($_SESSION["adresa"])? $_SESSION["adresa"] : "";
+    $adresa_sessioActual = $adresa_sessio;
 
     //Correu
 
-    $_SESSION["correu"] = $_POST["correu"];
+    if(isset($_POST["correu"])){
+        $_SESSION["correu"] = $_POST["correu"];
+    }
     $correu_sessio = isset($_SESSION["correu"])? $_SESSION["correu"] :"";
-
+    $correu_sessioActual = $correu_sessio;
     //Contraseya
 
-    $_SESSION["password"] = $_POST["password"];
+    if (isset($_POST["password"])) {
+        $_SESSION["password"] = $_POST["password"];
+    }
     $pass_sessio = isset($_SESSION["password"])? $_SESSION["password"] : "";
-
+    $pass_sessioActual = $pass_sessio;
 
     //Teléfon
 
-    $_SESSION["telefon"] = $_POST["telefon"];
-    $telefon_sessio = isset($_SESSION["telefon"])? $_SESSION["telefon"] : "";
-
+    if (isset($_POST["telefon"])) {
+        $_SESSION["telefon"] = $_POST["telefon"];
+    }
+    $telefon_sessio = isset($_SESSION["telefon"])? $_SESSION["telefon"] : 0;
+    $telefon_sessioActual = $telefon_sessio;
 
     //Donació
-
-    $_SESSION["donacio"] = $_POST["donacio"];
+    if(isset($_POST["donacio"])){
+        $_SESSION["donacio"] = $_POST["donacio"];
+    }
     $donacio_sessio = isset($_SESSION["donacio"])? $_SESSION["donacio"] : "";
+    $donacio_sessioActual = $donacio_sessio;
 
     //Animal a apadrinar
 
-    $_SESSION["animal"] = $_POST["animal"];
+    if(isset($_POST["animal"])){
+        $_SESSION["animal"] = $_POST["animal"];
+    }
     $animal_sessio = isset($_SESSION["animal"])? $_SESSION["animal"] : "";
+    $animal_sessioActual = $animal_sessio;
 
     //Continent
 
-    $_SESSION["continent"] = $_POST["continent"];
+    if (isset($_POST["continent"])) {
+        $_SESSION["continent"] = $_POST["continent"];
+    }
     $conti_sessio = isset($_SESSION["continent"])? $_SESSION["continent"] : "";
+    $conti_sessioActual = $conti_sessio;
 
     //Animal en perill 
     //Açi s'utilitzara els mètodes serialize i uinserialize per 
     //a guardar en memòria dels dades dels arrays
 
-    $_SESSION["taula_animal"] = $_POST["taula_animal"];
+    if(isset($_POST["animal_mes"])){
+        $_SESSION["animal_mes"] = $_POST["animal_mes"];
+    }
+    isset($_SESSION["animal_mes"])? $taulerAni_unSessio = serialize($_SESSION["animal_mes"]) : $taulerAni_unSessio = "";
+    
+    $taulerAni_sessio = unserialize($taulerAni_unSessio );
     //preguntar
 ?>
 
@@ -124,6 +153,10 @@
 
     ?>
     <!-- Açi anira el text -> Usuari inserit correctamwent en la base de dades-->
+    <?php 
+        include "funcions.php";
+        insereixUsuari($nom_sessioActual ,$cognoms_sessioActual ,$correu_sessioActual ,$pass_sessioActual);
+    ?>
     <?php
         //Inici del main
         echo "<main>";
@@ -136,7 +169,7 @@
         if(isset($_POST["nom"])){
             $nom = trim(htmlspecialchars($_POST["nom"]));
         }
-        echo "<div>NOM: ".$nom_sessio."</div>";
+        echo "<div>NOM: ".$nom_sessioActual."</div>";
 
         //Camp Cognoms
         $cognoms = "";
@@ -144,8 +177,8 @@
             $cognoms = trim(htmlspecialchars($_POST["cognoms"])); 
         }
 
-        if(strcmp($cognoms, "cognoms") == 0){
-            echo "<div>COGNOMS: ".$cognoms."</div>";
+        if(strcmp($cognoms_sessioActual, "cognoms") == 0){
+            echo "<div>COGNOMS: ".$cognoms_sessioActual."</div>";
         }
         else{
             echo "<div>COGNONS: <em>*_Valor Buit_*</em></div>";
@@ -158,8 +191,8 @@
             
         }
 
-        if(strcmp($adresa, "adresa") == 0){
-            echo "<div>ADREÇA: ".$adresa."</div>";
+        if(strcmp($adresa_sessioActual, "adresa") == 0){
+            echo "<div>ADREÇA: ".$adresa_sessioActual."</div>";
         }
         else{
             echo "<div>ADREÇA: <em>*_Valor Buit_*</em></div>";
@@ -171,14 +204,14 @@
             //Reutilitce codi de processaContacte.php
             $correu = trim(htmlspecialchars($_POST["correu"]));
         }
-        echo "<div>CORREU ELECTRÓNIC: ".$correu_sessio."</div>";
+        echo "<div>CORREU ELECTRÓNIC: ".$correu_sessioActual."</div>";
 
         //Camp Password
         $password = "";
         if(isset($_POST["password"])){
             $password = trim(htmlspecialchars($_POST["password"]));
         }
-        echo "<div>CONTRASENYA: ".$password."</div>";
+        echo "<div>CONTRASENYA: ".$pass_sessioActual."</div>";
 
         //Camp telefón
         $telefon = "";
@@ -186,8 +219,8 @@
             $telefon = trim(htmlspecialchars($_POST["telefon"])); 
         }
 
-        if(strcmp($telefon, "telefon") == 0){
-            echo "<div>TELÉFON: ".$telefon."</div>";
+        if(strcmp($telefon_sessioActual, "telefon") == 0){
+            echo "<div>TELÉFON: ".$telefon_sessioActual."</div>";
         }else{
             echo "<div>TELÉFON: <em>*_Valor Buit_*</em></div>";
         }
@@ -201,18 +234,18 @@
             $donacio = trim(htmlspecialchars($_POST["donacio"]));
         }
 
-        switch($donacio_sessio){
+        switch($donacio_sessioActual){
             case "cinc":
-                echo "<div>DONACIÓ: ".$donacio."</div>";
+                echo "<div>DONACIÓ: ".$donacio_sessioActual."</div>";
                 break;
             case "deu":
-                echo "<div>DONACIÓ: ".$donacio."</div>";
+                echo "<div>DONACIÓ: ".$donacio_sessioActual."</div>";
                 break;
             case "vint":
-                echo "<div>DONACIÓ: ".$donacio."</div>";
+                echo "<div>DONACIÓ: ".$donacio_sessioActual."</div>";
                 break;
             case "res":
-                echo "<div>DONACIÓ: ".$donacio."</div>";
+                echo "<div>DONACIÓ: ".$donacio_sessioActual."</div>";
                 break;
             default:
                 echo "<div>DONACIÓ: <em>*_Valor Buit_*</em></div>";
@@ -226,7 +259,7 @@
             $animal = trim(htmlspecialchars($_POST["animal"]));
         }
 
-        switch($animal_sessio){
+        switch($animal_sessioActual){
             case "goril·la":
                 echo "<div>";
                 echo "<strong>ANIMAL A APADRINAR: GORIL·LA ALBÍ</strong><br>";
@@ -267,16 +300,16 @@
         $continent = "";
         isset($_POST["continent"])? $continent = $_POST["continent"] : $continent = "";
 
-        if(strcmp($conti_sessio, "Europa") == 0){
-            echo "<div>CONTINENT: ".$conti_sessio."</div>";
-        }elseif(strcmp($conti_sessio, "América") == 0){
-            echo "<div>CONTINENT: ".$conti_sessio."</div>";
-        }elseif(strcmp($conti_sessio, "Àsia") == 0){
-            echo "<div>CONTINENT: ".$conti_sessio."</div>";
-        }elseif(strcmp($conti_sessio, "Àfrica") == 0){
-            echo "<div>CONTINENT: ".$conti_sessio."<7div>";
-        }elseif(strcmp($conti_sessio, "Oceanía") == 0){
-            echo "<div>CONTINENT: ".$conti_sessio."</div>";
+        if(strcmp($conti_sessioActual, "Europa") == 0){
+            echo "<div>CONTINENT: ".$conti_sessioActual."</div>";
+        }elseif(strcmp($conti_sessioActual, "América") == 0){
+            echo "<div>CONTINENT: ".$conti_sessioActual."</div>";
+        }elseif(strcmp($conti_sessioActual, "Àsia") == 0){
+            echo "<div>CONTINENT: ".$conti_sessioActual."</div>";
+        }elseif(strcmp($conti_sessioActual, "Àfrica") == 0){
+            echo "<div>CONTINENT: ".$conti_sessioActual."</div>";
+        }elseif(strcmp($conti_sessioActual, "Oceanía") == 0){
+            echo "<div>CONTINENT: ".$conti_sessioActual."</div>";
         }else{
             echo "<div>CONTINENT: <em>*_Valor Buit_*</em></div>";
         }
@@ -292,4 +325,4 @@
 </body>
 </html>
 
-<?php include "funcions.php"; registreAccionsUsuari($apartat, $usuari, $fitxer_usuari);?>
+<?php include_once "funcions.php"; registreAccionsUsuari($apartat_accio, $usuari, $fitxer_usuari); esborrarSessions();?>

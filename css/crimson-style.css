@@ -122,3 +122,27 @@ input[required]:valid,
 /* li input[value="crimson"]{
     color:crimson;
 } */
+
+/*ESTIL PER AL MISSATGE DE INSESIó A LA BASE DE DADES*/
+
+.db{
+    text-align: center;
+    padding: 5px;
+    border: 3px #8312a0 double;
+    width: 99%;
+    background: #9c62d3;
+    color: #2d193b;
+}
+
+/*RESPONSIVE*/
+
+@media screen and (max-width: 800px) {
+    
+    /*Xicotets dissenys responsive per al alguns elements de la pàgina*/
+
+    time {
+        position: fixed;
+        bottom: 0%;
+        left: 80%;
+    }
+}

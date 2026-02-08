@@ -119,3 +119,27 @@ input[required]:valid,
     text-align: justify;
     font-size: small;
 }
+
+/*ESTIL PER AL MISSATGE DE INSESIó A LA BASE DE DADES*/
+
+.db{
+    text-align: center;
+    padding: 5px;
+    border: 3px #000000 double;
+    width: 99%;
+    background: #ffffff;
+    color: #000000;
+}
+
+/*RESPONSIVE*/
+
+@media screen and (max-width: 800px) {
+    
+    /*Xicotets dissenys responsive per al alguns elements de la pàgina*/
+
+    time {
+        position: fixed;
+        bottom: 0%;
+        left: 80%;
+    }
+}

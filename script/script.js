@@ -3,6 +3,6 @@ function mostraMenu(){
 
     'use strict';
     let menu = document.getElementById("colors");
-
     menu.style.display = "block";
+  
 }

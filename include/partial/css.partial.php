@@ -22,7 +22,7 @@
                 <li><input type="radio" name="estil" value="gold" <?php if($estil_actual == "gold") echo "checked";?>><span>Dorat Crema</span></li>
                 <li><input type="radio" name="estil" value="sapphire" <?php if($estil_actual == "sapphire") echo "checked";?>><span>Blau Safir</span></li>
                 <li><input type="radio" name="estil" value="chaos" <?php if($estil_actual == "chaos") echo "checked";?>><span>Light & Darkness</span></li>
-
+                <li><input type="radio" name="estil" value="" <?php if($estil_actual == "") echo "checked";?>><span>Defecte</span></li>
                 <input type="submit" value="Tría estíl">
             </ul>
 

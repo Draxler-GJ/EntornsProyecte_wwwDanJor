@@ -122,3 +122,38 @@ input[required]:valid,
 /* input[value="azure"] span {
     color:azure;
 } */
+
+/*ESTIL PER AL MISSATGE DE INSESIó A LA BASE DE DADES*/
+
+.db{
+    text-align: center;
+    padding: 5px;
+    border: 3px #12a096 double;
+    width: 99%;
+    background: #29746f;
+    color: #193b39;
+}
+
+/*ESTIL PER AL MISSATGE DE INSESIó A LA BASE DE DADES*/
+
+.db{
+    text-align: center;
+    padding: 5px;
+    border: 3px #12a096 double;
+    width: 99%;
+    background: #29746f;
+    color: #193b39;
+}
+
+/*RESPONSIVE*/
+
+@media screen and (max-width: 800px) {
+    
+    /*Xicotets dissenys responsive per al alguns elements de la pàgina*/
+
+    time {
+        position: fixed;
+        bottom: 0%;
+        left: 80%;
+    }
+}
