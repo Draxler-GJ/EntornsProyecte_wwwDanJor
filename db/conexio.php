@@ -16,7 +16,7 @@
 
     /*Aquesta variable canviara depenguent del sistema aon es treballe, pot tindre contrasenya o no*/
 
-    $contrasenya = empty($contrasenya)? "root" : "";
+    $contrasenya = empty($contrasenya)? "root" : " ";
     //$contrasenya = "" ;
 
     $db = "usuari_registre";
@@ -40,20 +40,15 @@
         die("Error de conexió a la base de dades ".$e);
     }
 
-    $sql = "INSERT INTO `usuaris`(`nom_usuari` ,`cognoms_usuari` ,`correu_usuari` ,`contrasenya_usuari`) VALUES ('".$nom_sessioActual."', '".$cognoms_sessioActual."', '".$correu_sessioActual."', '".$pass_sessioActual."')";
 
+   
 
-        if($mysql -> query($sql) === TRUE){
-            echo "<p class='db'>Usuari ".$correu_sessioActual." inserit correctament a la base de dades</p>";
+        //$mysql->close();
+
+        /*
+            elseif($mysql -> query($sql) === FALSE){
+            //e
             
-        }elseif($mysql -> query($sql) === FALSE){
-            //echo "Error d'inseció: ".$sql."<br/>".$mysql->error;
-            echo "<p class='db'><span style='color: #f00'>ERROR:</span> Usuari ".$correu_sessioActual." no s'ha pogut inserir correctament en la base de dades</p>";
-            
-        }else{
-            include "../include/funcions.php";
-            usuariExistent();
         }
-
-        $mysql->close();
+        */
 ?>

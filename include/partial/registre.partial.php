@@ -27,6 +27,19 @@
     </div>
 
     <div>
+        <label for="repPassword">CONFIRMA CONTRASENYA:</label>
+        <input type="password" id="pass" name="repPassword" required><br><br>
+        <?php
+        $error = "";
+        if(isset($_GET["error"])){
+            $error = $_GET["error"];
+            echo "<span style='border: 1px solid #fff; border-radius: 5px; padding: 3px; background: #ffd3e2;'>La ".$error." no coincideix</span>";
+        }
+    ?>
+    </div>
+
+
+    <div>
         <label for="telefon">TELÉFON:</label>
         <input type="tel" id="telefon" name="telefon"><br><br>
     </div>

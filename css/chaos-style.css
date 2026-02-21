@@ -150,6 +150,27 @@ input[required]:valid,
     color: #ffffff;
 }
 
+
+/*ESTILS PER AL APARTAT LOGIN*/
+
+#registre{
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: #632974;
+}
+
+.login{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 20%;
+    height: 20vh;
+    border: solid 3px;
+    display: none;
+}
+
+
 /*RESPONSIVE*/
 
 @media screen and (max-width: 800px) {

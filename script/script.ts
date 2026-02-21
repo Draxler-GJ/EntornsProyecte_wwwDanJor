@@ -4,7 +4,7 @@ alert("Açí es faran xicotetes proves per petiçions ajax i canvits de estils")
 
 // function mostraMenu(): String{
 //     'use strict'
-//     let menu = document.getElementById("colors");
+//     let menu : String = document.getElementById("colors");
 
 //     menu.style.display = "none";
 // }

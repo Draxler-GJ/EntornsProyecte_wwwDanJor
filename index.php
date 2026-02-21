@@ -26,6 +26,25 @@
     //     die();
     // }
 
+     //Guardem les variables de sesió necessaries per al login 
+    //que després serań utilitzades
+
+    if(isset($_POST["usuari"])){
+        $_SESSION["usuari"] = trim(htmlspecialchars($_POST["usuari"]));
+    }
+
+    $usuariLogin = isset($_SESSION["usuari"]) ? $_SESSION["usuari"] :"";
+
+    $usuariActual = $usuariLogin;
+
+    if(isset($_POST["contrasenya"])){
+        $_SESSION["contrasenya"] = $_POST["contrasenya"];
+    }
+
+    $contraLogin = isset($_SESSION["contrasenya"])? $_SESSION["contrasenya"] :"";
+
+    $contrasenyaActual = $contraLogin;
+
 
 ?>
 
@@ -66,12 +85,18 @@
     <?php
         include "include/partial/css.partial.php";
         include 'include/partial/cap.partial.php';
+        include "include/partial/login.partial.php";
     ?>
     <?php
         include 'include/partial/menu.partial.php';
     ?>
     <?php
-        include 'include/partial/principal.partial.php';
+
+        if($usuariActual == "admin@daw.com"){
+            include 'include/partial/admin.partial.php';
+        }else{
+            include 'include/partial/principal.partial.php';
+        }
     ?>
     <?php
         include 'include/partial/peu.partial.php';

@@ -1,4 +1,18 @@
 <?php
+    declare(strict_types = 1);
+    
+    //funcio per a comprobar si les dues contrasenyes passades
+    //per el usuari coinxideixen
+    function comprobarContrasenya($contrasenya, $contrasenyaRep){
+
+        if(strcmp($contrasenya,$contrasenyaRep) != 0){
+                    header("Location: ../index.php?id=registre&error=contrasenya");
+                    die();
+            }
+        
+    }
+    //==================================================================
+
     //Aquest apartat contidra funcions que pasades
     //amb arguments o sense ells guardaran en un registe stots i cadascuna
     //de les acciones que realitze el usuari
@@ -32,7 +46,7 @@
                 //crear el backup
                     if(count(file($fitxer)) >= 20){
                         $fitxer_backup = "./logs/backup/backup_".date("d.m.y")."_".date("H:i:s").".log";
-                        $ruta_fitxer_backup = fopen($fitxer_backup, "a+");
+                        //$ruta_fitxer_backup = fopen($fitxer_backup, "a+");
                          //$copia_fitxer = fgets($ruta_fitxer);
                         copy($fitxer,$fitxer_backup);
                     }
@@ -54,6 +68,8 @@
     //Amb aço si aplega a funcionar;
       //$contingut = $contador." :: Accés a l'apartat ".strtoupper($apartat)." el día ".date("m.d.y")." a l'hora ".date("H:i:s")."\n";
       //file_put_contents($ruta_fitxer, $contingut);
+
+    //==============================================================================================================
 
     //Mateixa funció per a els actes del usuari
     $apartat_accio = "";
@@ -98,7 +114,7 @@
         }
     }
 
-
+    //======================================================================
 
     //Métode de inserció d'usuari a la base de dades
     //Es fara un de la sentencuia Sql Insert per a ficar els valore
@@ -109,14 +125,43 @@
     function insereixUsuari($nom_sessioActual ,$cognoms_sessioActual ,$correu_sessioActual ,$pass_sessioActual){
 
         require "../db/conexio.php";
-        //realitzem la inserció de dades en la base de dades
-        //la conexió es realitzara desde altre fitxer
+        
+
+        if(!usuariExistent($correu_sessioActual, $mysql)){
+            $sql = "INSERT INTO `usuaris`(`nom_usuari` ,`cognoms_usuari` ,`correu_usuari` ,`contrasenya_usuari`) VALUES ('".$nom_sessioActual."', '".$cognoms_sessioActual."', '".$correu_sessioActual."', '".$pass_sessioActual."')";
+
+
+            if($mysql -> query($sql) === TRUE){
+                echo "<p class='db'>Usuari ".$correu_sessioActual." inserit correctament a la base de dades</p>";            
+            }else{
+                echo "<p>Error insersió</p>";
+            }
+        }
+          
+
+        $mysql->close();
            
     }
 
     //Métode per comprobar que el correu introuit a la base de dades ja existeix
-    function usuariExistent(){
+    function usuariExistent($correu, $mysql){
 
-        require "../db/select_db.php";
+        //require "../db/select_db.php";
+
+        //aquest document es fara servir a la funció del usuari inxerit
+        //la conexió es realitzara desde altre fitxer
+        //Es comprobara que si el usuari ja exxisteix, que no deixe registralo
+        $sql = "SELECT * FROM `usuaris` WHERE `correu_usuari` = '".$correu."'";
+
+        $consulta = $mysql -> query($sql);
+        if($consulta -> num_rows > 0){
+            echo "<p class='db'><span style='color: #f00'>ERROR:</span> Usuari ".$correu." ja existeix a la base de dades</p>";
+            return true;
+        }else{
+            return false;
+        }
+
+    
     }
+
 ?>

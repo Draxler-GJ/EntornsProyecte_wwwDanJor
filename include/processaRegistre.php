@@ -58,6 +58,13 @@
     $pass_sessio = isset($_SESSION["password"])? $_SESSION["password"] : "";
     $pass_sessioActual = $pass_sessio;
 
+    if(isset($_POST["repPassword"])){
+        $_SESSION["repPassword"] = $_POST["repPassword"];
+    }
+
+    $repP_sessio = isset($_SESSION["repPassword"])? $_SESSION["repPassword"] : "";
+    $repP_sessioActual = $repP_sessio;
+
     //Teléfon
 
     if (isset($_POST["telefon"])) {
@@ -100,6 +107,12 @@
     
     $taulerAni_sessio = unserialize($taulerAni_unSessio );
     //preguntar
+
+    //Comprobació que els camps de les contrasenyes son iguals, en cas de ser
+    //el cas 
+   
+    include "funcions.php";
+    comprobarContrasenya($pass_sessioActual, $repP_sessioActual);
 ?>
 
 
@@ -154,11 +167,11 @@
     ?>
     <!-- Açi anira el text -> Usuari inserit correctamwent en la base de dades-->
     <?php 
-        include "funcions.php";
+        //include "funcions.php";
         insereixUsuari($nom_sessioActual ,$cognoms_sessioActual ,$correu_sessioActual ,$pass_sessioActual);
     ?>
     <?php
-        //Inici del main
+         //Inici del main
         echo "<main>";
 
         echo "<h1>DADES DE REGISTRE D'USUARI</h1>";
@@ -177,8 +190,9 @@
             $cognoms = trim(htmlspecialchars($_POST["cognoms"])); 
         }
 
-        if(strcmp($cognoms_sessioActual, "cognoms") == 0){
-            echo "<div>COGNOMS: ".$cognoms_sessioActual."</div>";
+        //(strcmp($cognoms_sessioActual, "cognoms") === 0)
+        if(!empty($cognoms_sessioActual)){
+            echo "<div>COGNOMS: ".(String)$cognoms_sessioActual."</div>";
         }
         else{
             echo "<div>COGNONS: <em>*_Valor Buit_*</em></div>";
@@ -191,8 +205,9 @@
             
         }
 
-        if(strcmp($adresa_sessioActual, "adresa") == 0){
-            echo "<div>ADREÇA: ".$adresa_sessioActual."</div>";
+        //if(strcmp($adresa_sessioActual, "adresa") === 0)
+        if(!empty($adresa_sessioActual)){
+            echo "<div>ADREÇA: ".(String)$adresa_sessioActual."</div>";
         }
         else{
             echo "<div>ADREÇA: <em>*_Valor Buit_*</em></div>";
@@ -213,14 +228,23 @@
         }
         echo "<div>CONTRASENYA: ".$pass_sessioActual."</div>";
 
+        //Camp de confirmar si la contrasenya introuida es correcta
+        $passwordRepetit = "";
+        if(isset($_POST["repPassword"])){
+            $passwordRepetit = trim(htmlspecialchars($_POST["repPassword"]));
+        }
+
+       
         //Camp telefón
         $telefon = "";
         if(isset($_POST["telefon"])){
             $telefon = trim(htmlspecialchars($_POST["telefon"])); 
         }
 
-        if(strcmp($telefon_sessioActual, "telefon") == 0){
-            echo "<div>TELÉFON: ".$telefon_sessioActual."</div>";
+        //quant es treballen en variables de sessió no cal emprar strcmp, es millor empty per a vore si estan o no vuides
+        //if(strcmp($telefon_sessioActual, "telefon") === 0)
+        if(!empty($telefon_sessioActual)){
+            echo "<div>TELÉFON: ".(String)$telefon_sessioActual."</div>";
         }else{
             echo "<div>TELÉFON: <em>*_Valor Buit_*</em></div>";
         }
@@ -325,4 +349,5 @@
 </body>
 </html>
 
-<?php include_once "funcions.php"; registreAccionsUsuari($apartat_accio, $usuari, $fitxer_usuari); esborrarSessions();?>
+<?php //include_once "funcions.php";
+ registreAccionsUsuari($apartat_accio, $correu_sessioActual, $fitxer_usuari); esborrarSessions();?>
