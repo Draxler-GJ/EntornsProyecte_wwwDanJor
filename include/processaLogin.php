@@ -7,21 +7,15 @@
     //Guardem les variables de sesió necessaries per al login 
     //que després serań utilitzades
 
+    $usuariLogin = "";
     if(isset($_POST["usuari"])){
-        $_SESSION["usuari"] = trim(htmlspecialchars($_POST["usuari"]));
+        $usuariLogin = trim(htmlspecialchars($_POST["usuari"]));
     }
 
-    $usuariLogin = isset($_SESSION["usuari"]) ? $_SESSION["usuari"] :"";
-
-    $usuariActual = $usuariLogin;
-
+    $contraLogin = "";
     if(isset($_POST["contrasenya"])){
-        $_SESSION["contrasenya"] = $_POST["contrasenya"];
+        $contraLogin = trim(htmlspecialchars($_POST["contrasenya"]));
     }
-
-    $contraLogin = isset($_SESSION["contrasenya"])? $_SESSION["contrasenya"] :"";
-
-    $contrasenyaActual = $contraLogin;
 
 
     //conexió i comprobació amb la base d dades
@@ -31,30 +25,60 @@
     //Com hem declarat les variables de sessió líneas amunt, es comparan amb el que vinga de la base de dades
 
     //Declarem la instrucció sql
-    $sql = 'SELECT * FROM `usuaris` WHERE `correu_usuari` = "'.$usuariActual.'"';
+    $sql = 'SELECT * FROM `usuaris` WHERE `correu_usuari` = "'.$usuariLogin.'"';
 
     $consultaLogin = $mysql -> query($sql);
 
     //$mysql -> close();
 
- 
+    
     
         //echo $usuariActual;
         //echo $contrasenyaActual;
         
-        $row = $consultaLogin -> fetch_assoc();
+        //Amb aquest buble do-while comprovem amb la consulta
+        //que hi han valors superiors a 0, trocejant en variables camp er camp
+        //Posteriorment les guarem en variables de sessió que es comproven si existeixen
+        //per a després fer la comparació
+        if($consultaLogin -> num_rows > 0){
+            
+            $row = $consultaLogin -> fetch_assoc();
+
+             //contrasenya del usuari
+             //Mes avant -> if(password_verify($contraLogin, $row["contrasenya_usuari"]))
+            if(strcmp($contraLogin, $row["contrasenya_usuari"]) == 0){
+                $_SESSION["contrasenya_usuari"] = $row["contrasenya_usuari"];
+
+                
+
+                //correu del usuari
+                if(strcasecmp($usuariLogin, $row["correu_usuari"]) == 0){
+                    $_SESSION["correu_usuari"] = $row["correu_usuari"];
+                }
+
+                
+                //================================================================================
+                $_SESSION["nom_usuari"] = $row["nom_usuari"];
+
+                
+
+                header("Location: ../index.php");
+                die();
+            }else{
+                header("Location: ../index.php?id=inici&error=errorContrasenya");
+                die();
+            }
+        }else{
+            header("Location: ../index.php?id=inici&error=errorUsuari");
+            die();
+        }
+
+    
+
+  
 
         
         //echo "Usuari -> ".$row["correu_usuari"]." / contrasenya -> ".$row["contrasenya_usuari"];
-
-        if(strcmp($usuariActual, $row["correu_usuari"]) == 0){
-            header("Location: ../index.php");
-            die();
-            //echo "<div style='content:\007 '>HOLA ".$row["nom_usuari"]."</div></br>";
-        }else{
-            header("Location: ../index.php?id=inici&error=loginCorreu");
-            die();
-        }
 
         // if(strcmp($contrasenyaActual,$row["contrasenya_usuari"]) != 0){
         //     header("Location: ../index.php?id=inici&error=loginContrasenya");

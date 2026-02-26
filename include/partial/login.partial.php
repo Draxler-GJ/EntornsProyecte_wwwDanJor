@@ -1,4 +1,4 @@
-<span id="registre">Si ja tens un conter: <a href="#login" title="Iniciar Sessió" id="enllaç">Inicia Sessió</a><br>
+<span id="registre">Si ja tens un conter: <a href="#" title="Iniciar Sessió" id="enllaç">Inicia Sessió</a><br>
     Si no:<a href="index.php?id=registre" title="registre">Registrat</a></span>
 
 <div class="login" id="login">
@@ -10,8 +10,8 @@
 
         <?php
         
-            if(isset($_GET["error"])){
-                echo "<em style='background: #d122d3; border-style: solid'>Error. Usuari incorrecte</em>";
+            if(isset($_GET["error"]) && $_GET["error"] == "errorUsuari"){
+                echo "<em style='background: #d122d3; border-style: solid'>Error. Usuari incorrecte</em></br>";
             }
 
         ?>
@@ -21,7 +21,7 @@
 
         <?php
 
-           if(isset($_GET["error"])){
+           if(isset($_GET["error"]) && $_GET["error"] == "errorContrasenya"){
                  echo "<em style='background: #d122d3; border-style: solid'>Error. Contrasenya incorrecte</em>";
              }
 

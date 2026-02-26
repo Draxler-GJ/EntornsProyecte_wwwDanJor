@@ -164,4 +164,19 @@
     
     }
 
+    //==========================================================================================
+
+    //Métode creació de missatges d'error si el login no ha sigut correcte
+
+    // function mostrarMissatgeError($usuari, $contrasenya){
+
+    //     $errorLogin = isset($_GET["error"])? $_GET["error"] : "";
+
+    //     if(!$errorLogin){
+    //         echo "<em style='background: #d122d3; border-style: solid'>Error. Usuari incorrecte</em>";
+    //     }else{
+    //         echo "<em style='background: #d122d3; border-style: solid'>Error. Contrasenya incorrecte</em>";
+    //     }
+    // }
+
 ?>
