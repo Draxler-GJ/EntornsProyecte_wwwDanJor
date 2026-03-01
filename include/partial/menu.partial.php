@@ -32,7 +32,14 @@
             echo '<ul>';
             echo '<li><a href="'.$inici.'">Inici</a></li>';
             echo '<li><a href="'.$contacte.'">Contacte</a></li>';
-            echo '<li><a href="'.$registre.'">Registre</a></li>';
+
+            if(!empty($usuariActual)){
+                echo '<li><a href="'.$registre.'" style="display: none;">Registre</a></li>';
+            }else{
+                echo '<li><a href="'.$registre.'">Registre</a></li>';
+            }
+
+
             echo '<li><a href="'.$apadrina.'">Apadrina</a></li>';
             echo '</ul>';
     ?>

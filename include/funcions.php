@@ -126,9 +126,10 @@
 
         require "../db/conexio.php";
         
+        $contrasenyaXifrada = password_hash($pass_sessioActual, PASSWORD_DEFAULT);
 
         if(!usuariExistent($correu_sessioActual, $mysql)){
-            $sql = "INSERT INTO `usuaris`(`nom_usuari` ,`cognoms_usuari` ,`correu_usuari` ,`contrasenya_usuari`) VALUES ('".$nom_sessioActual."', '".$cognoms_sessioActual."', '".$correu_sessioActual."', '".$pass_sessioActual."')";
+            $sql = "INSERT INTO `usuaris`(`nom_usuari` ,`cognoms_usuari` ,`correu_usuari` ,`contrasenya_usuari`) VALUES ('".$nom_sessioActual."', '".$cognoms_sessioActual."', '".$correu_sessioActual."', '".$contrasenyaXifrada."')";
 
 
             if($mysql -> query($sql) === TRUE){

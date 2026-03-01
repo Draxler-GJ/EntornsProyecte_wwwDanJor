@@ -44,10 +44,11 @@
             
             $row = $consultaLogin -> fetch_assoc();
 
-             //contrasenya del usuari
-             //Mes avant -> if(password_verify($contraLogin, $row["contrasenya_usuari"]))
-            if(strcmp($contraLogin, $row["contrasenya_usuari"]) == 0){
-                $_SESSION["contrasenya_usuari"] = $row["contrasenya_usuari"];
+            
+             //contrasenya del usuari 
+             //Mes avant -> if(strcmp($contraLogin, $row["contrasenya_usuari"]) == 0)
+            if(password_verify($contraLogin, $row["contrasenya_usuari"])){
+                $_SESSION["contrasenya_usuari"] = trim(htmlspecialchars($row["contrasenya_usuari"]));
 
                 
 
@@ -60,7 +61,7 @@
                 //================================================================================
                 $_SESSION["nom_usuari"] = $row["nom_usuari"];
 
-                
+                $_SESSION["id"] = $row["id"];
 
                 header("Location: ../index.php");
                 die();
@@ -75,7 +76,7 @@
 
     
 
-  
+    
 
         
         //echo "Usuari -> ".$row["correu_usuari"]." / contrasenya -> ".$row["contrasenya_usuari"];
