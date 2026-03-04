@@ -6,7 +6,7 @@
     /*IMPORTANT! --> es necessari colocar-ho al inici de cada página*/
 
     session_start();
-
+    include "include/funcions.php";
     //Crea la variable de session sempre i quant existisca
     //i guradem en una altra variable el resultat de session si existix
 
@@ -57,6 +57,30 @@
     }
 
     $nomActual = $nomDB;
+
+    //Variables de Sessió que vindra les formularis dels animals de la secció apadrina
+
+    if(isset($_POST["quantitatAnimal"])){
+        $_SESSION["quantitatAnimal"] = $_POST["quantitatAnimal"];
+    }
+
+    $preuQuantitat = "";
+    if(isset($_SESSION["quantitatAnimal"])){
+        $preuQuantitat = $_SESSION["quantitatAnimal"];
+    }
+
+    $quantitatSessio = $preuQuantitat;
+
+    if(isset($_POST["id"])){
+         $_SESSION["id"] = $_POST["id"];
+    }
+
+    $idDBanimal = "";
+    if(isset($_SESSION["id"])){
+         $idDBanimal = $_SESSION["id"];
+    }
+
+    $idDBanimalSessio = $idDBanimal;
 
 ?>
 
@@ -124,4 +148,4 @@
 </body>
 </html>
 
-<?php include "include/funcions.php"; registreApartat($fitxer, $apartat); ?>
+<?php registreApartat($fitxer, $apartat); ?>

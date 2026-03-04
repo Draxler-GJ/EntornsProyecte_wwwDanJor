@@ -1,5 +1,123 @@
 <?php
     declare(strict_types = 1);
+
+    //=====================================================================================================
+    //Métode per a mostrar a cada formulari de la part apadrina els animals a apadrinar
+    //Es fara amb el metode mostrarAnimls() i despreś una altra funció per al formulari
+
+    function mostrarAnimals(){
+
+        include "./db/select_db.php";
+
+        $sql = "SELECT * FROM `animals`";
+
+        $consultaAnimals = $mysql -> query($sql);
+
+        if($consultaAnimals -> num_rows > 0){
+            echo "<div id='taulaDB'>";
+            while($row = $consultaAnimals -> fetch_assoc()){
+                echo "ID -> ". $row['id']."</br>";
+                echo "NOM COMÚ -> ".$row['nom_comu']."</br>";
+                echo "NOM CIENTÍFIC -> ".$row["nom_cientific"]."</br>";
+                echo "DONACIÓ -> ".$row["donacio"]."€</br>";
+                echo "DESCRIPCIÓ -> ".$row["descripcio"]."</br>";
+                mostrarFormulariAnimals($row['id']);
+                echo "</br>"; 
+            }
+
+            echo "</div>";
+            
+        }
+
+    }
+
+    function mostrarFormulariAnimals($id){
+    
+        //Mostrarem tantes vegades com id pasen de la funció mostrarAnimals()
+        switch ($id) {
+            case 1:
+                echo "<img src='./img/gorilla-copito-de-nieve-bmc-paper.jpg' title='goril·la' alt='goril·la' width='100'>";
+                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<input type='hidden' name='idQ' id='1' value='1'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+            
+            case 2:
+                echo "<img src='./img/Linces.jpg' title='linx' alt='linx' width='100'>";
+                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<input type='hidden' name='idQ' id='2' value='2'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 3:
+                echo "<img src='./img/ajolote.webp' title='axolot' alt='axolot' width='100'>";
+                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<input type='hidden' name='idQ' id='3' value='3'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 4:
+                echo "<img src='./img/dodo.jpg' title='dodo' alt='dodo' width='100'>";
+                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<input type='hidden' name='idQ' id='4' value='4'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 5:
+                echo "<img src='./img/reithrodontomys-soderstromi-ac.jpg' title='rosegador' alt='rosegador' width='100'>";
+                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<input type='hidden' name='idQ' id='5' value='5'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 6:
+                echo "<img src='./img/paquita.jpg' title='gos' alt='gos' width='100'>";
+                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<input type='hidden' name='idQ' id='6' value='6'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 7:
+                echo "<img src='./img/roman_admin.png' title='conill' alt='conill' width='100'>";
+                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<input type='hidden' name='idQ' id='7' value='7'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            default:
+                echo "<div><picture>
+
+                <img src='img/images.png' alt='Construcció' title='Constucció'>
+
+                </picture></div>";
+                break;
+        }
+        
+    }
+
+
+    //======================================================================================
     
     //funcio per a comprobar si les dues contrasenyes passades
     //per el usuari coinxideixen
