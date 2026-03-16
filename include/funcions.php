@@ -38,7 +38,7 @@
             case 1:
                 echo "<img src='./img/gorilla-copito-de-nieve-bmc-paper.jpg' title='goril·la' alt='goril·la' width='100'>";
                 echo "<form action='./index.php?id=apadrina' method='POST'>";
-                echo "<input type='hidden' name='idQ' id='1' value='1'>";
+                echo "<input type='hidden' name='id' id='".$id."' value='1'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
@@ -48,7 +48,7 @@
             case 2:
                 echo "<img src='./img/Linces.jpg' title='linx' alt='linx' width='100'>";
                 echo "<form action='./index.php?id=apadrina' method='POST'>";
-                echo "<input type='hidden' name='idQ' id='2' value='2'>";
+                echo "<input type='hidden' name='id' id='".$id."' value='2'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
@@ -58,7 +58,7 @@
             case 3:
                 echo "<img src='./img/ajolote.webp' title='axolot' alt='axolot' width='100'>";
                 echo "<form action='./index.php?id=apadrina' method='POST'>";
-                echo "<input type='hidden' name='idQ' id='3' value='3'>";
+                echo "<input type='hidden' name='id' id='".$id."' value='3'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
@@ -68,7 +68,7 @@
             case 4:
                 echo "<img src='./img/dodo.jpg' title='dodo' alt='dodo' width='100'>";
                 echo "<form action='./index.php?id=apadrina' method='POST'>";
-                echo "<input type='hidden' name='idQ' id='4' value='4'>";
+                echo "<input type='hidden' name='id' id='".$id."' value='4'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
@@ -78,7 +78,7 @@
             case 5:
                 echo "<img src='./img/reithrodontomys-soderstromi-ac.jpg' title='rosegador' alt='rosegador' width='100'>";
                 echo "<form action='./index.php?id=apadrina' method='POST'>";
-                echo "<input type='hidden' name='idQ' id='5' value='5'>";
+                echo "<input type='hidden' name='id' id='".$id."' value='5'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
@@ -88,7 +88,7 @@
             case 6:
                 echo "<img src='./img/paquita.jpg' title='gos' alt='gos' width='100'>";
                 echo "<form action='./index.php?id=apadrina' method='POST'>";
-                echo "<input type='hidden' name='idQ' id='6' value='6'>";
+                echo "<input type='hidden' name='id' id='".$id."' value='6'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
@@ -98,7 +98,7 @@
             case 7:
                 echo "<img src='./img/roman_admin.png' title='conill' alt='conill' width='100'>";
                 echo "<form action='./index.php?id=apadrina' method='POST'>";
-                echo "<input type='hidden' name='idQ' id='7' value='7'>";
+                echo "<input type='hidden' name='id' id='".$id."' value='7'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
@@ -193,6 +193,12 @@
     $apartat_accio = "";
     if(isset($_GET["id"])){
         $apartat_accio = $_GET["id"]; 
+    }elseif(isset($_GET["error"]) && strcmp($_GET["error"], 'errorContrasenya') == 0){
+        $apartat_accio = $_GET["error"];
+    }elseif(isset($_GET["error"]) && strcmp($_GET["error"], 'errorUsuari') == 0){
+        $apartat_accio = $_GET["error"];
+    }elseif(isset($_GET["accioadmin"]) && strcmp($_GET["accioadmin"], 'eliminat') == 0){
+        $apartat_accio = $_GET["accioadmin"];
     }
 
 
@@ -201,10 +207,23 @@
         $apartat_accio = "contacte";
     }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
         $apartat_accio = "registra";
+    }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaLogin.php") == 0){
+        $apartat_accio = "login";
+    }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaLogout.php") == 0){
+        $apartat_accio = "logout";
+    }elseif(strcmp(basename($_SERVER['PHP_SELF']), "eliminaUsuari.php") == 0){
+        $apartat_accio = "eliminar usuari";
+    }elseif(strcmp(basename($_SERVER['PHP_SELF']), "index.php") == 0 && $apartat_accio == "errorUsuari" || $apartat_accio == "errorContrasenya"){
+        $apartat_accio = "acces incorrecte";
     }
 
 
-    $fitxer_usuari = "../logs/accionsUsuari.log";
+    if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaLogin.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaLogout.php") == 0 ){
+        $fitxer_usuari = "../logs/accionsUsuari.log";
+    }elseif(strcmp(basename($_SERVER["PHP_SELF"]), "index.php") == 0){
+        $fitxer_usuari = "./logs/accionsUsuari.log";
+    }
+
     $usuari = isset($_POST["correu"])? $_POST["correu"] : "<em>Valor_Vuit</em>";
     
     function registreAccionsUsuari($apartat_accio, $usuari, $fitxer_usuari){

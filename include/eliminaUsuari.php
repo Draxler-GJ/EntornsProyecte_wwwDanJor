@@ -7,6 +7,7 @@
     }
 
     include "../db/select_db.php";
+    include "funcions.php";
 
     $sql= "DELETE FROM `usuaris` WHERE `id` = ".$borrarId;
 
@@ -14,6 +15,7 @@
         //SI la consulta de borrar es correcta es torna a la página de admin en index amb l'acció
 
         header("Location: ../index.php?accioadmin=eliminat");
+        registreAccionsUsuari($apartat_accio,"admim@daw.com",$fitxer_usuari);
         die();
     }else{
         //En cas de que no haja sigut aixina, es redirigeis marcant un error

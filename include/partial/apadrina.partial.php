@@ -7,6 +7,7 @@
 </picture> -->
 <?php
 
-    mostrarAnimals();
+    mostrarAnimals(); //Falta arreglar els formularis per veure el id i que es pase com a varible
+    //Averiguar el tema de putjar fotos a base de dades, donat que la funció mostrarAnimals agafa les rutes de la caprte img
 
 ?>

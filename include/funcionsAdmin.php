@@ -42,7 +42,7 @@
                     echo "<td>".$row["id"]."</td>";
                     echo "<td>".$row["nom_usuari"]."</td>";
                     echo "<td>".$row["correu_usuari"]."</td>";
-                    echo "<td>".substr($row["contrasenya_usuari"], 0, 15)."...</td>";
+                    echo "<td>".substr($row["contrasenya_usuari"], 0, 15)."\...</td>";
                     echo "<td><img src='./img/taskmanager_themonitor_6938.png' alt='admin' title='admin'></td>";
                     echo "</tr>";
                 }else{
@@ -50,8 +50,8 @@
                     echo "<td>".$row["id"]."</td>";
                     echo "<td>".$row["nom_usuari"]."</td>";
                     echo "<td>".$row["correu_usuari"]."</td>";
-                    echo "<td>".substr($row["contrasenya_usuari"], 0, 15)."...</td>";
-                    echo "<td><a href='./include/eliminaUsuari.php?id=".$row["id"]."'><img src='./img/delete_delete_exit_1577.png' alt='eliminar' title='eliminar'></td>";
+                    echo "<td>".substr($row["contrasenya_usuari"], 0, 15)."\...</td>";
+                    echo "<td><a href='./include/eliminaUsuari.php?id=".$row["id"]."'><img src='./img/delete_delete_exit_1577.png' alt='eliminar' title='eliminar'></a></td>";
                     echo "</tr>";
                 }
             }
@@ -62,6 +62,33 @@
         $mysql->close();
     } 
 
+    //====================================================================================================================
 
+    //Funcions per mostrarAccions del usuari
+    function mostraAccionsUsuari(){
+
+    //cridem amb file el arxiu de aon estroben les logs
+        $accions = file("./logs/accionsUsuari.log");
+        //var_dump($accions);
+
+        for ($i=0; $i < count($accions); $i++) { 
+            $class = "";
+            if(str_contains($accions[$i],'REGISTRA')){
+                $class = "registre";
+            }elseif(str_contains($accions[$i],'CONTACTE')){
+                $class = "contacte";
+            }elseif(str_contains($accions[$i],'LOGIN')){
+                $class = "loginUser";
+            }elseif(str_contains($accions[$i],'LOGOUT')){
+                $class = "logout";
+            }elseif(str_contains($accions[$i],'ACCES INCORRECTE')){
+                $class = "incorrecte";
+            }elseif(str_contains($accions[$i],'ELIMINAR USUARI')){
+                $class = "eliminar";
+            }
+
+            echo "<p class=\"".$class."\">".$accions[$i]."</p>";
+        }
+    }
 
 ?>

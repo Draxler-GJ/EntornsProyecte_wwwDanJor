@@ -19,6 +19,22 @@
 
         include "./include/funcionsAdmin.php";
         gestionaUsuaris();
+
+        
+        //Aquest apartat ens permetra cridar als logs ono depenguent de la accio
+        $mostrarLog = "";
+        if(isset($_GET["mostrarLog"])){
+            $mostrarLog = $_GET["mostrarLog"];
+        }
+        
+        if($mostrarLog === 'true'){
+            echo "<br><span style='text-align:center;background: rgba(150, 99, 200, 0.9)'><a href='index.php?mostrarLog=false'>Oculta Log</a></span><br>";
+             mostraAccionsUsuari();
+        }else{
+            echo "<br><span style='text-align:center;background: rgba(150, 123, 12, 0.9)'><a href='index.php?mostrarLog=true'>Mostra Log</a></span><br>";
+        }
+
+
     ?>
 
     <picture>
@@ -31,6 +47,9 @@
         if(!empty($usuariActual)){
             echo "<div><img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'> :: Hola ".$usuariActual." :: <a href='./include/processaLogout.php'><img src='./img/delete_delete_exit_1577.png' alt='eliminar' title='eliminar' width='50'></a></div>";
         }
+
+
+
 
     ?>
 

@@ -3,6 +3,8 @@
     //En aquesta página procedirem a crear una página de inici de sessió
 
     session_start();
+
+    include "funcions.php";
     
     //Guardem les variables de sesió necessaries per al login 
     //que després serań utilitzades
@@ -63,19 +65,22 @@
 
                 $_SESSION["id"] = $row["id"];
 
-                header("Location: ../index.php");
+                header("Location: ../index.php?id=inici");
+                registreAccionsUsuari($apartat_accio, $usuariLogin, $fitxer_usuari);
                 die();
             }else{
                 header("Location: ../index.php?id=inici&error=errorContrasenya");
+                registreAccionsUsuari($apartat_accio, $usuariLogin, $fitxer_usuari);
                 die();
             }
         }else{
             header("Location: ../index.php?id=inici&error=errorUsuari");
+            registreAccionsUsuari($apartat_accio, $usuariLogin, $fitxer_usuari);
             die();
         }
 
     
-
+        
     
 
         
@@ -90,5 +95,7 @@
     //he vist més factible comprobar-ho manualment
     //amb variables de sessio o en tot cas haber utilitzat les variables de post
     //per a comprobar que tant el usuari i el password si son iguals
+    
+
     
 ?>

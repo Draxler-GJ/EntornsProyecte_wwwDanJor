@@ -59,6 +59,7 @@
     $nomActual = $nomDB;
 
     //Variables de Sessió que vindra les formularis dels animals de la secció apadrina
+    //Van a ser utilitzades per al Carret per a les págines index.php, processaContacte.php i processaRegistre.php
 
     if(isset($_POST["quantitatAnimal"])){
         $_SESSION["quantitatAnimal"] = $_POST["quantitatAnimal"];
@@ -119,6 +120,8 @@
 </head>
 <body>
     <?php
+
+        //Falta crear el carret i dur les variables de apadrina per al formulari. 
         include "include/partial/css.partial.php";
         include 'include/partial/cap.partial.php';
         
@@ -148,4 +151,4 @@
 </body>
 </html>
 
-<?php registreApartat($fitxer, $apartat); ?>
+<?php registreApartat($fitxer, $apartat); registreAccionsUsuari($apartat_accio, $correuDB, $fitxer_usuari) ?>

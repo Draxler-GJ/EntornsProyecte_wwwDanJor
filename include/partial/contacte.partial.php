@@ -14,6 +14,7 @@
 
     <div>
         <label for="missatge">MISSATGE:</label>
+<!--Falta fer la matriu-->
         <textarea name="missatge" id="missatge" placeholder="Deixa el teu missatge" required></textarea><br><br>
     </div>
 

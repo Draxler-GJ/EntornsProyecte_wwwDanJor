@@ -30,17 +30,38 @@
             }
 
             echo '<ul>';
-            echo '<li><a href="'.$inici.'">Inici</a></li>';
-            echo '<li><a href="'.$contacte.'">Contacte</a></li>';
+            //Els enllaço deixaran de ser enllaços depenent de aon fen clic
+            //Falten que els enllaços en processaContacte i processaRegistre no es mostren com enllaços
 
+            /*Pagina inici*/
+            if(strcmp($id, "inici")== 0){
+                echo '<li><span style="color: indigo; border: 1px solid indigo; background: #de2df0;">Inici</span></li>';
+            }else{
+                echo '<li><a href="'.$inici.'">Inici</a></li>';
+            }
+            /*Pagina contacte -> Tindre en compte el si el usuari esta logejat. mateix pass per a processaContacte*/
+            if(strcmp($id, 'contacte') == 0 || !empty($usuariActual)){
+                echo '<li><span style="color: indigo; border: 1px solid indigo; background: #de2df0;">Contacte</span></li>';
+            }else{
+                echo '<li><a href="'.$contacte.'">Contacte</a></li>';
+            }
+            /*Pagina registra -> Es mantindra oculta sempre i quant no es vetja quant se esta logejat, donant que no es vora registre. En cas de no estar processaRegistre ha de tindre bloquejat l'estil*/
             if(!empty($usuariActual)){
                 echo '<li><a href="'.$registre.'" style="display: none;">Registre</a></li>';
             }else{
-                echo '<li><a href="'.$registre.'">Registre</a></li>';
+                if(strcmp($id, 'registre') == 0){
+                    echo '<li><span style="color: indigo; border: 1px solid indigo; background: #de2df0;">Registre</span></li>';
+                }else{
+                    echo '<li><a href="'.$registre.'">Registre</a></li>';
+                }
             }
-
-
-            echo '<li><a href="'.$apadrina.'">Apadrina</a></li>';
+            /*Pagina apadrina*/
+            if(strcmp($id, 'apadrina') == 0){
+                echo '<li><span style="color: indigo; border: 1px solid indigo; background: #de2df0;">Apadrina</span></li>';
+            }else{
+                echo '<li><a href="'.$apadrina.'">Apadrina</a></li>';
+            }
+            
             echo '</ul>';
     ?>
 
