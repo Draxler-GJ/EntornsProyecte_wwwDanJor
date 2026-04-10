@@ -170,6 +170,10 @@
     }
 
     $idDBanimalSessio = $idDBanimal;
+
+        //Variable de sessio del carret
+    //es fara us de serialize i unserialize 
+    //cometada per a mes avant -> $_SESSION["carret"];
 ?>
 
 
@@ -214,7 +218,7 @@
         if(empty($usuariActual)){
             include "partial/login.partial.php";
         }elseif(!empty($usuariActual)){
-            echo "<div><img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'> Hola ".$nomActual." <a href='./include/processaLogout.php'>Log Out</a> <img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'></div>";
+            echo "<div><img src='../img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'> Hola ".$nomActual." <a href='./processaLogout.php'>Log Out</a> <img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'></div>";
         }
 
         //include "partial/menu.partial.php";
@@ -413,13 +417,15 @@
 
         
     ?>
-        <div class="carret">
+        
             <?php
 
                 //Disposició del carret amb les variables de sessió dels carrets
 
                 
-                if(isset($idDBanimalSessio)){
+                if(isset($_SESSION["id"])){
+
+                    echo "<div class='carret' id='carret'>";
 
                     include "../db/select_db.php";
                     //comprovem que existeix una variable de sessio sobre el id del formulari
@@ -438,16 +444,22 @@
                         echo "<li>ID -> ".$idDBanimalSessio."</li><br>";
                         echo "<li>Nom -> ".$row["nom_comu"]."</li><br>";
                         echo "<li>Donació -> ".$row["donacio"]."</li><br>";
-                        echo "<li>Quantitat -> ".$quantitatSessio."</li></br>";
+                        echo "<li>Quantitat -> ".$quantitatSessio."</li><br>";
 
                         $total =  $quantitatSessio * $row["donacio"];
                         echo "<li>Total -> ".$total." €</li>";
                     }
-                }
 
-                echo "</ul>";
+                    echo "</ul>";
+
+                    echo "</div>";
+
+                }elseif(!isset($_SESSION["id"])){
+
+                    echo "<div class='nocarret'><strong><em>LES DADES DEL CARRET NO ESTAN ACCESIBLES</em></strong></div>";
+                }
             ?>
-        </div>
+
     <?php
 
         //Fin del main>        

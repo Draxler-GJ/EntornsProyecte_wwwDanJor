@@ -2,8 +2,22 @@
     Si no:<a href="index.php?id=registre" title="registre">Registrat</a></span>
 
 <div class="login" id="login">
-    
-    <form method="POST" action="./include/processaLogin.php">
+
+        <?php
+
+        if(strcmp(basename($_SERVER['PHP_SELF']), "index.php") == 0){
+
+        ?>
+        <form method='POST' action='./include/processaLogin.php'>
+        <?php
+
+        }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp($_SERVER['PHP_SELF'], "processaRegistre.php") == 0){
+
+        ?>
+        <form method='POST' action='./processaLogin.php'>
+        <?php
+        }
+        ?>
 
         <label for="usuari">Usuari: </label>
         <input type="email" name="usuari" placeholder="usuari" required><br><br>

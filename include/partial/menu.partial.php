@@ -39,12 +39,14 @@
             }else{
                 echo '<li><a href="'.$inici.'">Inici</a></li>';
             }
+
             /*Pagina contacte -> Tindre en compte el si el usuari esta logejat. mateix pass per a processaContacte*/
-            if(strcmp($id, 'contacte') == 0 || !empty($usuariActual)){
+            if(strcmp($id, 'contacte') == 0 ){//|| !empty($usuariActual)
                 echo '<li><span style="color: indigo; border: 1px solid indigo; background: #de2df0;">Contacte</span></li>';
             }else{
                 echo '<li><a href="'.$contacte.'">Contacte</a></li>';
             }
+
             /*Pagina registra -> Es mantindra oculta sempre i quant no es vetja quant se esta logejat, donant que no es vora registre. En cas de no estar processaRegistre ha de tindre bloquejat l'estil*/
             if(!empty($usuariActual)){
                 echo '<li><a href="'.$registre.'" style="display: none;">Registre</a></li>';
@@ -55,6 +57,7 @@
                     echo '<li><a href="'.$registre.'">Registre</a></li>';
                 }
             }
+            
             /*Pagina apadrina*/
             if(strcmp($id, 'apadrina') == 0){
                 echo '<li><span style="color: indigo; border: 1px solid indigo; background: #de2df0;">Apadrina</span></li>';

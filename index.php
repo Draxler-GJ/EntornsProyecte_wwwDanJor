@@ -83,6 +83,36 @@
 
     $idDBanimalSessio = $idDBanimal;
 
+    //Variable de sessio del carret
+    //es fara us de serialize i unserialize 
+    //cometada per a mes avant -> $_SESSION["carret"];
+    
+    //Es duran a terme totes les accions que després es faran us d'elles en index.php, processaContacte.php i processaRegistre.php
+
+    //include "./include/Entity/Animal.php";
+    include "./include/Entity/CarretCompra.php";
+    
+    // if(isset($_SESSION["carret"])){
+    //     //Pas 1. Deserialitzar la variable
+    //     $c1 = unserialize($_SESSION["carret"]);
+    //     //Pas 2. Es crea el carret amb la variable 
+        
+    //     //Pas 3. Buscar el animal i obtindre les seues dades
+    //     //$c1.getAnimal();
+    //     //Pas 4. Comprobar si existeix
+    //     // if(isset($c1.getAnimal())){
+    //     //     canviarQuantitatAnimal();
+    //     // }else{
+    //     //     nouAnimal();
+    //     // }
+
+    // }else{
+    //     //En cas de que no existisca la variable de sessio del carret
+    //     //Pas 1. -> Crearlo el carret
+
+    //     $_SESSION["carret"] = new CarretCompra($idDBanimalSessio);
+    // }
+
 ?>
 
 
@@ -139,7 +169,7 @@
     ?>
     <?php
 
-        if($usuariActual == "admin@daw.com"){
+        if(strcmp(trim(htmlspecialchars($usuariActual)) , "admin@daw.com") == 0){
             include 'include/partial/admin.partial.php';
         }else{
             include 'include/partial/principal.partial.php';

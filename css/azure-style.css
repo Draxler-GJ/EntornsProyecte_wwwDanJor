@@ -187,10 +187,17 @@ input[required]:valid,
     border: 3px double #000;
 }
 
+/*TAULA MATRIU*/
+
+.matriu{
+    width: 100%;
+}
+
 /*ESTIL EXCLUSIU PER AL CARRET*/
 
 .carret{background: rgb(220, 151, 151); color: #000; width: 20%;}
 .carret > ul li {width: 50%; border: 1px double #fff;}
+.nocarret{background: rgb(220, 151, 151); color: #000; width: 20%;}
 
 
 /*ESTIL PER AL MISSATGE DE INSESIó A LA BASE DE DADES*/

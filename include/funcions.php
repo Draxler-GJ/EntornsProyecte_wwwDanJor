@@ -2,6 +2,14 @@
     declare(strict_types = 1);
 
     //=====================================================================================================
+    /*
+      Métode per a crear un nou Animal Amb POO
+    */
+
+    //function nouAnimal(){}
+
+
+    //=====================================================================================================
     //Métode per a mostrar a cada formulari de la part apadrina els animals a apadrinar
     //Es fara amb el metode mostrarAnimls() i despreś una altra funció per al formulari
 
@@ -37,7 +45,7 @@
         switch ($id) {
             case 1:
                 echo "<img src='./img/gorilla-copito-de-nieve-bmc-paper.jpg' title='goril·la' alt='goril·la' width='100'>";
-                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id' id='".$id."' value='1'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
@@ -47,7 +55,7 @@
             
             case 2:
                 echo "<img src='./img/Linces.jpg' title='linx' alt='linx' width='100'>";
-                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id' id='".$id."' value='2'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
@@ -57,7 +65,7 @@
 
             case 3:
                 echo "<img src='./img/ajolote.webp' title='axolot' alt='axolot' width='100'>";
-                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id' id='".$id."' value='3'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
@@ -67,7 +75,7 @@
 
             case 4:
                 echo "<img src='./img/dodo.jpg' title='dodo' alt='dodo' width='100'>";
-                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id' id='".$id."' value='4'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
@@ -77,7 +85,7 @@
 
             case 5:
                 echo "<img src='./img/reithrodontomys-soderstromi-ac.jpg' title='rosegador' alt='rosegador' width='100'>";
-                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id' id='".$id."' value='5'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
@@ -87,7 +95,7 @@
 
             case 6:
                 echo "<img src='./img/paquita.jpg' title='gos' alt='gos' width='100'>";
-                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id' id='".$id."' value='6'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
@@ -97,7 +105,7 @@
 
             case 7:
                 echo "<img src='./img/roman_admin.png' title='conill' alt='conill' width='100'>";
-                echo "<form action='./index.php?id=apadrina' method='POST'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id' id='".$id."' value='7'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
                 echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";

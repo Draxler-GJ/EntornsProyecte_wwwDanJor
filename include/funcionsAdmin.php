@@ -1,7 +1,7 @@
 <?php
 
     /* En aquest arxiu aniran totes les accicions que l'administrador del projecte te per a dur a terme */
-
+    declare(strict_types=1);
     function gestionaUsuaris(){
 
         //Conexió a la base de dades
