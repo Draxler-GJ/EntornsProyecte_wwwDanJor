@@ -1,4 +1,4 @@
-//Açi es faran xicotetes proves per petiicons ajax i canvits de estls
+//Açi es faran xicotetes proves per peticons ajax i canvits de estls
 function mostraMenu(){
 
     'use strict';

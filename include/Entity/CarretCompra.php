@@ -4,20 +4,23 @@
     declare(strict_types = 1);
     /*CLASE CARRET COMPRA*/
 
-    include "Animal.php";
+    //include "Animal.php";
 
     class CarretCompra{
 
         //Variables de instancia i vissibilitat privada
 
         private string $idUsuari;
-        private $llistatAnimals = [];
+        private $llistatAnimals;
         
         //constructor
 
         public function __construct(string $idUsuari){
 
             $this->idUsuari = $idUsuari;
+       
+            $this->llistatAnimals = null;
+    
 
         }
 
@@ -37,21 +40,32 @@
             return $this->llistatAnimals;
         }
 
-        public function setLlistatAnimals(string $llistatAnimals){
+        public function setLlistatAnimals($llistatAnimals){
             $this->llistatAnimals = $llistatAnimals;
         }
 
         //Metodes de la clase que per ara no seran instanciats
 
-        public function afegirAnimal($objAnimal){
-            if(isset($objAnimal)){
-                //Augmentar la quantitat del animal
-                //$this->canviarQuantitatAnimals($id,$quantitat);
-            }else{
-                $llistatAnimals = array_push($objAnimal);
+        public function afegirAnimal(Animal $objAnimal){
+
+            //primer es comproba el estat del array, si es null
+            if($this->llistatAnimals === null){
+                $this->llistatAnimals = [];
             }
-            return $llistatAnimals;
-            
+
+            //Pasem a comprobar el id que obtinguem de la clase Animal
+            $idAnimalPassat = $objAnimal->getId();
+
+            //Aleshores comprobem que el id de la clase animal ya existeix i fem la suma o no
+            //en cas de que el Animal estiga o no dins l'array
+            if(isset($this->llistatAnimals[$idAnimalPassat])){
+                //Augmentar la quantitat del animal cridant al setter de quantitat
+                $quantitat = $this->llistatAnimals[$idAnimalPassat]->setQuantitat($this->llistatAnimals[$idAnimalPassat]->getQuantitat() + $objAnimal->getQuantitat());
+                return $quantitat;
+            }elseif(!isset($this->llistatAnimals[$idAnimalPassat])){
+                array_push($this->llistatAnimals, $objAnimal);
+                //return $llistatAnimals;
+            }
         }
 
         public function eliminarAnimal($id){
@@ -63,25 +77,42 @@
         }
 
         public function getAnimal($id){
+            
             foreach($this->llistatAnimals as $animalConcret){
-                if($animalConcret == $id){
+                if($this->llistatAnimals[$animalConcret] === $id){
                     return $animalConcret;
                 }
             }
-
             return null;
         }
 
         public function canviarQuantitatAnimal($id, $quantitat){
-            if(isset($id)){
-                
-                $quantitatNova = $quantitat++;
+            //Moodificacions:
+            /*
+             *Amb l'ajuda de ia per a corregir....
+             *  Agafem els valors de la array e la clase
+             * Els recorreguem amb un foreach o for i posteriorment
+             * si el id que ens pasen coincideix amb el id de la clase Animal.php
+             * canvia la quantitat amb el metode setQauantitat, en cas de que
+             * existisca el animal en el carret
+            */
+            foreach ($this->llistatAnimals as $animal) {
+                if ($animal->getId() === $id) {
+                   $animal->setQuantitat($animal->getQuantitat() + $quantitat);
+                   return;//Aquest return s'utilitza per a finatlitzar la operació
+                   //i que no continue tornar el resultat
+                }
             }
+            
         }
 
         public function mostrarCarret($llistatAnimals){
-            echo "Aquesta es la informació del carret";
-            var_dump($llistatAnimals);
+            echo "<br><code>Aquesta es la informació del carret</code>";
+            var_dump($this->llistatAnimals);
+            foreach ($this->llistatAnimals as $quantitat) {
+                echo "<p>Romasaurus_Rex</p>";
+                echo "<p>Quantitat -> ".$llistatAnimals[$quantitat]."</p><br>";
+            }
         }
 
         public function buidarCarret(){

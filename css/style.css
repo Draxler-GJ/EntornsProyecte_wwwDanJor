@@ -141,7 +141,7 @@ input[required]:valid,
     position: fixed;
     right: 0;
     top: 0;
-    background-color: #632974;
+    background-color: #c183d4;
 }
 
 .login{
@@ -188,6 +188,16 @@ input[required]:valid,
     border: 3px double #000;
 }
 
+.apadrina{
+    background: rgb(105, 104, 104);
+    border: 3px double #000;
+}
+
+.inici{
+    background: rgb(255, 255, 255);
+    border: 3px double #000;
+}
+
 /*TAULA MATRIU*/
 
 .matriu{
@@ -196,9 +206,14 @@ input[required]:valid,
 
 /*ESTIL EXCLUSIU PER AL CARRET*/
 
-.carret{background: rgb(220, 151, 151); color: #000; width: 20%;}
+.carret{background: rgb(220, 151, 151); color: #000; width: 20%; position: absolute; top: 250px;}
 .carret > ul li {width: 50%; border: 5px dotted #fff;}
-.nocarret{background: rgb(220, 151, 151); color: #000; width: 20%;}
+.nocarret{background: rgb(220, 151, 151); color: #000; width: 20%; position: absolute; top: 250px;}
+
+/*ESTIL EXCLUSIU MATRIU*/
+
+.color{background: radial-gradient(#fff, #f00, #fff, #00f);color: #000;}
+.color2{background: radial-gradient(#fff, #ff0, #fff, #0ff);color: #000;}
 
 /*RESPONSIVE*/
 

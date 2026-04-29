@@ -108,13 +108,13 @@
 
     $quantitatSessio = $preuQuantitat;
 
-    if(isset($_POST["id"])){
-         $_SESSION["id"] = $_POST["id"];
+    if(isset($_POST["id_animal"])){
+         $_SESSION["id_animal"] = $_POST["id_animal"];
     }
 
     $idDBanimal = "";
-    if(isset($_SESSION["id"])){
-         $idDBanimal = $_SESSION["id"];
+    if(isset($_SESSION["id_animal"])){
+         $idDBanimal = $_SESSION["id_animal"];
     }
 
     $idDBanimalSessio = $idDBanimal;
@@ -248,8 +248,27 @@
             
             for ($i=0; $i < count($missatgeCom); $i++) { 
                 echo "<tr>";
-                for ($j=0; $j < $random; $j++) { 
-                    echo "<td>".$missatgeCom[$i]."</td>";
+                for ($j=0; $j < $random; $j++) {
+                    //Estils segons la matriu 
+                    if($random % 2 == 0){
+                        echo "<td class='color'>".$missatgeCom[$i]."</td>";
+                    }else{
+                        echo "<td class='color2'>".$missatgeCom[$i]."</td>";
+                    }
+
+                    //Mateixos estils segons la longitud o si son minuscules o mayuscules
+                    // if(strlen($missatgeCom[$i]) <= 7){
+                    //     echo "<span style='border: solid 1px pink;background: black;color: orange; margin: 2px;'>".$missatgeCom[$i]."</span>";
+                    // }elseif($missatgeCom[$i] == "animal" || $missatgeCom[$i] == "apadrinar"){
+                    //     echo "<span style='border: solid 1px gold;background: chocolate;color: silver; margin: 2px;'>".$missatgeCom[$i]."</span>";
+                    // }elseif(strtoupper($missatgeCom[$i])){
+                    //     echo "<span style='border: solid 1px red;background: gray;color: white; margin: 2px;'>".$missatgeCom[$i]."</span>";
+                    // }elseif(strtolower($missatgeCom[$i])){
+                    //     echo "<span style='border: solid 1px lime;background: teal; color: turquoise; margin:2px;'>".$missatgeCom[$i]."</span>";
+                    // }
+                    // else{
+                    //     echo "<span style='border: solid 1px yellow;background: aquamarine;color: white; margin: 2px;'>".$missatgeCom[$i]."</span>";
+                    // }
                 }
                 echo "</tr>";
             }
@@ -333,7 +352,7 @@
                 //Disposició del carret amb les variables de sessió dels carrets
 
                 
-                if(isset($_SESSION["id"])){
+                if(isset($_SESSION["id_animal"])){
 
                     echo "<div class='carret' id='carret'>";
 
@@ -342,7 +361,7 @@
                     //fem la consulta i agafem les dues variables de sesió del id i  la quantitat de animals
                     //executem la consulta i posteriorment comprovem que el numero de files es superior a zero
 
-                    $carretSQL = 'SELECT * FROM `animals` WHERE `id` = '.$idDBanimalSessio;
+                    $carretSQL = "SELECT * FROM `animals` WHERE `id_animal` = ".$idDBanimalSessio."";
 
                     echo "<ul><h6>INFORMACIÓ CARRET</h6>";
 
@@ -364,7 +383,7 @@
 
                     echo "</div>";
 
-                }elseif(!isset($_SESSION["id"])){
+                }elseif(!isset($_SESSION["id_animal"])){
 
                     echo "<div class='nocarret'><strong><em>LES DADES DEL CARRET NO ESTAN ACCESIBLES</em></strong></div>";
                 }

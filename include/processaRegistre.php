@@ -160,13 +160,13 @@
 
     $quantitatSessio = $preuQuantitat;
 
-    if(isset($_POST["id"])){
-         $_SESSION["id"] = $_POST["id"];
+    if(isset($_POST["id_animal"])){
+         $_SESSION["id_animal"] = $_POST["id_animal"];
     }
 
     $idDBanimal = "";
-    if(isset($_SESSION["id"])){
-         $idDBanimal = $_SESSION["id"];
+    if(isset($_SESSION["id_animal"])){
+         $idDBanimal = $_SESSION["id_animal"];
     }
 
     $idDBanimalSessio = $idDBanimal;
@@ -423,7 +423,7 @@
                 //Disposició del carret amb les variables de sessió dels carrets
 
                 
-                if(isset($_SESSION["id"])){
+                if(isset($_SESSION["id_animal"])){
 
                     echo "<div class='carret' id='carret'>";
 
@@ -454,7 +454,7 @@
 
                     echo "</div>";
 
-                }elseif(!isset($_SESSION["id"])){
+                }elseif(!isset($_SESSION["id_animal"])){
 
                     echo "<div class='nocarret'><strong><em>LES DADES DEL CARRET NO ESTAN ACCESIBLES</em></strong></div>";
                 }

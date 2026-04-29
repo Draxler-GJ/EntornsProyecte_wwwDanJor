@@ -1,0 +1,26 @@
+{
+
+    "developer" : {
+    "user" : "Daniel",
+    "modul" : "Entorns de Desenvolupament",
+    "curs" : "1 CSGF",
+    "config" : "true"
+    },
+
+    "work": {
+        "nom-projecte" : "Aparinar un animal",
+        "descripcio" : [
+            "Gestionar un carret de compra per a apadrinar animals",
+            "Registre de usuaris en una base de dades",
+            "Apendre qa desplegar una web FRONT-END amb el llenguatge PHP"
+        ]
+    },
+
+    "estat-actual" : "65",
+    "fase" : "en construció",
+    "llenguatges" : {
+        "1" : "PHP",
+        "2" : "SQL"
+    }
+    
+}

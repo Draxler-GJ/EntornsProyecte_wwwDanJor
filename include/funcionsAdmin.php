@@ -85,6 +85,10 @@
                 $class = "incorrecte";
             }elseif(str_contains($accions[$i],'ELIMINAR USUARI')){
                 $class = "eliminar";
+            }elseif(str_contains($accions[$i],'APADRINA')){
+                $class = "apadrina";
+            }elseif(str_contains($accions[$i],'INICI')){
+                $class = "inici";
             }
 
             echo "<p class=\"".$class."\">".$accions[$i]."</p>";

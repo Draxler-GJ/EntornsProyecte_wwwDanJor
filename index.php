@@ -26,7 +26,7 @@
     //     die();
     // }
 
-    //=======================================================================================================================
+    //====================================================================================================================================
 
      //Guardem les variables de sesió necessaries per al login 
     //que després serań utilitzades
@@ -72,16 +72,18 @@
 
     $quantitatSessio = $preuQuantitat;
 
-    if(isset($_POST["id"])){
-         $_SESSION["id"] = $_POST["id"];
+    if(isset($_POST["id_animal"])){
+         $_SESSION["id_animal"] = $_POST["id_animal"];
     }
 
     $idDBanimal = "";
-    if(isset($_SESSION["id"])){
-         $idDBanimal = $_SESSION["id"];
+    if(isset($_SESSION["id_animal"])){
+         $idDBanimal = $_SESSION["id_animal"];
     }
 
     $idDBanimalSessio = $idDBanimal;
+
+    //================================================================================================================================
 
     //Variable de sessio del carret
     //es fara us de serialize i unserialize 
@@ -89,30 +91,71 @@
     
     //Es duran a terme totes les accions que després es faran us d'elles en index.php, processaContacte.php i processaRegistre.php
 
-    //include "./include/Entity/Animal.php";
     include "./include/Entity/CarretCompra.php";
+    include "./include/Entity/Animal.php";
+
+    //En cas de que no existisca la variable de sessio del carret
+    //Pas 1. -> Crearlo el carret
+
+    // $carret = new CarretCompra($usuariActual);
+    $_SESSION["carret"] = serialize(new CarretCompra($usuariActual));
+
+     /*
+        * Despres d haver´hi creat el carret i la variable de sessió
+        * en index.php, en carret.partial.php, ficar en com totes les funcions de les 
+        * clases CarretAnimal i Animal, per a actualitzar les dades
+    */
     
-    // if(isset($_SESSION["carret"])){
-    //     //Pas 1. Deserialitzar la variable
-    //     $c1 = unserialize($_SESSION["carret"]);
-    //     //Pas 2. Es crea el carret amb la variable 
-        
-    //     //Pas 3. Buscar el animal i obtindre les seues dades
-    //     //$c1.getAnimal();
-    //     //Pas 4. Comprobar si existeix
-    //     // if(isset($c1.getAnimal())){
-    //     //     canviarQuantitatAnimal();
-    //     // }else{
-    //     //     nouAnimal();
-    //     // }
+    /* comprobar si la variable de sessió existeix o no */
 
-    // }else{
-    //     //En cas de que no existisca la variable de sessio del carret
-    //     //Pas 1. -> Crearlo el carret
+    if (isset($_SESSION["carret"])) {//Si la variable de sessió exiteix
+        //Pas 1. Deserialitzem la variable per a recuperar el valor
+        $c1 = unserialize($_SESSION["carret"]);
 
-    //     $_SESSION["carret"] = new CarretCompra($idDBanimalSessio);
-    // }
+        //Pas 2. Obtinguem el valor del id del Animal amb el métode getAnimal()
+        $obtenirIdAnimal = $c1->getAnimal($idDBanimalSessio);
 
+        //Pas 3. Depenent de si el id que passem es igual al del métode,
+        //increment la quantitat si son iguals o afegim el nou animal al array
+        if (isset($idDBanimalSessio)) {
+            //$totalApadrinats = 0;$totalApadrinats
+            $quantitatTotal = $c1->canviarQuantitatAnimal(intval($obtenirIdAnimal), intval($quantitatSessio));
+        }else{
+            $nouAnimal = nouAnimal($idDBanimalSessio, $quantitatSessio);
+            // $totalApadrinats = 0;
+            // $totalApadrinats ++;
+            $c1->afegirAnimal($nouAnimal);
+        }
+
+        //Pas 4. Després serialitzem i borrem
+        $_SESSION["carret"] = serialize($c1);
+        unset($c1);
+
+    }else{
+
+        //En cas de no existir.
+        //Pas 1. Crear el objecte a ma, comprobant si l'usuari esta logejat o no
+        if (empty($usuariActual)) {
+            $c1 = new CarretCompra(session_id());
+        }elseif(!empty($usuariActual)){
+            $c1 = new CarretCompra($usuariActual);
+        }
+
+        //Pas 2. Una vegada comprobat l'estat de l'usuari
+        /* Declarem l'array i guardem el animal que creem */
+
+        $llistatAnimals = [];
+        $nouAnimal = nouAnimal($idDBanimalSessio, $quantitatSessio);
+        //array push per a guardar l'animal
+        array_push($llistatAnimals, $nouAnimal);
+        //Agafem les dades del array
+        $c1->setLlistatAnimals($llistatAnimals);
+
+        //Pas 3. Serialitzem en la variable de sessió i borrem amb unset
+        $_SESSION["carret"] = serialize($c1);
+        unset($c1);
+
+    }
 ?>
 
 
