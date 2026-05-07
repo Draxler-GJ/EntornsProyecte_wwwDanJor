@@ -11,7 +11,7 @@
 
             echo "<img src='img/images.png' alt='Construcció' title='Constucció'>";
 
-        echo "</picture>";
+        echo "</picture><br>";
 
         echo "<a href='index.php?id=apadrina' style='text-align: center; color: yellowgreen;'>Tornar al apadrina</a>";
 

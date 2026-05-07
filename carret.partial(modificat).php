@@ -120,3 +120,10 @@
             }
 
 ?>
+
+
+object(CarretCompra)#1 (2) { ["idUsuari":"CarretCompra":private]=> string(26) "fi2lsatn2crusll7pabqud2sf5" 
+                            ["llistatAnimals":"CarretCompra":private]=> array(1) { [0]=> object(Animal)#2 (7) { ["id":"Animal":private]=> int(1) ["nomComu":"Animal":private]=> string(15) "Goril·la Blanc" ["nomCientific":"Animal":private]=> string(10) "Nfumu Ngui" ["quantitat":"Animal":private]=> int(3) ["donacio":"Animal":private]=> float(20) ["descripcio":"Animal":private]=> string(603) "El nom científic de Floquet va ser Gorilla Gorilla, ja que va pertànyer a la espècie de Gorilla Occidental. Aquest goril·la va néixer a Rio Muni i va ser descobert per uns caçadors a la Selva de Nko ubicada a Guinea Equatorial, que el van denominar «Gorila Blanco». El van vendre a un professor que era conservador al Centre de Experimentació de Ikunde de la Ajuntament de Barcelona i el professor el va portar a Espanya al any 66, convertint-se en protagonista de la portada de National Geographic al any següent, convertint-se en un símbol del zoo de Barcelona i fent-se mundialment famós." ["imatgeAn":"Animal":private]=> string(17) "animalDefecte.png" } } } 
+
+object(CarretCompra)#1 (2) { ["idUsuari":"CarretCompra":private]=> string(26) "o6dupm9319a8s3ek3676apcfkr" 
+                            ["llistatAnimals":"CarretCompra":private]=> array(1) { [0]=> object(Animal)#2 (7) { ["id":"Animal":private]=> int(7) ["nomComu":"Animal":private]=> string(11) "Romansaurus" ["nomCientific":"Animal":private]=> string(15) "ROMANSAURUS_REX" ["quantitat":"Animal":private]=> int(1) ["donacio":"Animal":private]=> float(100) ["descripcio":"Animal":private]=> string(155) "Conill domèstic entrenat per el seu amo. Es un famòs youtuber que cada día impresiona al món amb les seues carreres i la forma grasiosa de fer sprints." ["imatgeAn":"Animal":private]=> string(17) "animalDefecte.png" } } } 

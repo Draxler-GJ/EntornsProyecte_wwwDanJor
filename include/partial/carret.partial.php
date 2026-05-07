@@ -29,23 +29,21 @@
                         echo "<li>Nom -> ".$row["nom_comu"]."</li><br>";
                         echo "<li>Donació -> ".$row["donacio"]."€</li><br>";
                         
-                        $idExistent = $_SESSION["id_animal"];
-                        if($idDBanimalSessio === $idExistent){
+                        
+                        if (isset($quantitatTotal)) {
                             echo "<li>Quantitat -> ".$quantitatSessio."/".$quantitatTotal."</li><br>";
-                        }elseif($idDBanimalSessio != $idExistent){
+                        }else{
                             echo "<li>Quantitat -> ".$quantitatSessio."/".$quantitatSessio."</li><br>";
                         }
 
                         $total = $quantitatSessio * $row["donacio"];
                         echo "<li>Total -> ".$total." €</li>";
-
-                        echo $quantitatTotal;
                     
                     
                 echo "</ul>";
 
                         if(empty($correuDB)){
-                            echo "<strong><small>Usuari no registrat</small></strong><br>";
+                            echo "<strong><small>Usuari: ".session_id()."</small></strong><br>";
                             echo "<small>Total Apadrinats: ".$quantitatSessio."</small>";
                         }elseif(!empty($correuDB)){
                             echo "<strong><small>Usuari: ".$correuDB."</small></strong><br>";

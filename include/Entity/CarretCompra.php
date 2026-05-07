@@ -11,17 +11,15 @@
         //Variables de instancia i vissibilitat privada
 
         private string $idUsuari;
-        private $llistatAnimals;
+        private $llistatAnimals = null;
         
         //constructor
 
         public function __construct(string $idUsuari){
 
             $this->idUsuari = $idUsuari;
-       
-            $this->llistatAnimals = null;
+            $this->llistatAnimals = [];
     
-
         }
 
         /*Getters - Setters de cada atribut*/
@@ -78,12 +76,34 @@
 
         public function getAnimal($id){
             
-            foreach($this->llistatAnimals as $animalConcret){
-                if($this->llistatAnimals[$animalConcret] === $id){
+            foreach($this->llistatAnimals as $animal){
+                if($animal->getId() === $id){
+                    $animalConcret = $animal->getId();
                     return $animalConcret;
                 }
             }
             return null;
+        }
+
+        /*Métode per a acumular la quantitat de animal existensts*/
+
+        public function acumularQuantitatAnimal($id, $quantitat){
+
+            //$quantitatParcial = 0;
+            //comprobem que e ens passen es el mateix
+           
+           foreach ($this->llistatAnimals as $animal) {
+                
+                if ($animal->getId() === $id) {
+                    $quantitatNova = $animal->getQuantitat();
+                    $quantitatTotal = $animal->setQuantitat($quantitat + $quantitatNova);
+
+                    return $quantitatTotal;
+                }
+
+           }
+
+
         }
 
         public function canviarQuantitatAnimal($id, $quantitat){
@@ -98,7 +118,7 @@
             */
             foreach ($this->llistatAnimals as $animal) {
                 if ($animal->getId() === $id) {
-                   $animal->setQuantitat($animal->getQuantitat() + $quantitat);
+                   $animal->setQuantitat($quantitat);
                    return;//Aquest return s'utilitza per a finatlitzar la operació
                    //i que no continue tornar el resultat
                 }
@@ -106,13 +126,29 @@
             
         }
 
-        public function mostrarCarret($llistatAnimals){
-            echo "<br><code>Aquesta es la informació del carret</code>";
-            var_dump($this->llistatAnimals);
-            foreach ($this->llistatAnimals as $quantitat) {
-                echo "<p>Romasaurus_Rex</p>";
-                echo "<p>Quantitat -> ".$llistatAnimals[$quantitat]."</p><br>";
+        public function mostrarCarret(){
+            echo "<br><code>Aquesta es la informació del carret</code><br>";
+            //var_dump($this->llistatAnimals);
+            echo "<table border='1' bgcolor='lime'>";
+            echo "<tr>";
+
+            foreach ($this->llistatAnimals as $id) {
+                echo "<td>";
+                echo "<p>ID => ".$id->getId()."</p>";
+                echo "</td>";
             }
+
+            foreach ($this->llistatAnimals as $quantitat) {
+                echo "<td>";
+                echo "<p>Quantitat => ".$quantitat->getQuantitat()."</p><br>";
+                echo "</td>";
+                echo "<td>";
+                echo "<input type='submit' value='Canviar quantitat'><br>";
+                echo "</td>";
+            }
+
+            echo "</tr>";
+            echo "</table>";
         }
 
         public function buidarCarret(){

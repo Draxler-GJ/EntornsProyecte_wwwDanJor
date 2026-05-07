@@ -65,7 +65,7 @@
                 echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id_animal' id='".$id."' value='1'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
-                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
                 echo "</form>";
                 break;
@@ -75,7 +75,7 @@
                 echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id_animal' id='".$id."' value='2'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
-                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
                 echo "</form>";
                 break;
@@ -85,7 +85,7 @@
                 echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id_animal' id='".$id."' value='3'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
-                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
                 echo "</form>";
                 break;
@@ -95,7 +95,7 @@
                 echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id_animal' id='".$id."' value='4'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
-                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
                 echo "</form>";
                 break;
@@ -105,7 +105,7 @@
                 echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id_animal' id='".$id."' value='5'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
-                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
                 echo "</form>";
                 break;
@@ -115,7 +115,7 @@
                 echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id_animal' id='".$id."' value='6'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
-                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
                 echo "</form>";
                 break;
@@ -125,7 +125,7 @@
                 echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
                 echo "<input type='hidden' name='id_animal' id='".$id."' value='7'>";
                 echo "<label for='quantitatAnimal'>Quantitat: </label>";
-                echo "<input type='number' name='quantitatAnimal' min='0' step='1'>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
                 echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
                 echo "</form>";
                 break;
