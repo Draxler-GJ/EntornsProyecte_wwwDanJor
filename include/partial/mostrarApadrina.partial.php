@@ -13,7 +13,7 @@
 
         echo "</picture><br>";
 
-        echo "<a href='index.php?id=apadrina' style='text-align: center; color: yellowgreen;'>Tornar al apadrina</a>";
+        echo "<a href='index.php?id=apadrina' style='text-align: center; color: yellowgreen;'>Tornar a apadrinar</a>";
 
     echo "</div>";
 

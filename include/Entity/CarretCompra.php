@@ -68,10 +68,11 @@
 
         public function eliminarAnimal($id){
             // include "../../db/select_db.php";
-            foreach ($id as $animal) {
-                array_pop($animal);
+            foreach ($this->llistatAnimals as $id) {
+                array_pop($this->llistatAnimals);
+                //echo "El animal amb id -> ".$id." ha sigut eliminat correctament";
             }
-            echo "El animal amb id -> ".$animal." ha sigut eliminat correctament";
+            
         }
 
         public function getAnimal($id){
@@ -92,17 +93,17 @@
             //$quantitatParcial = 0;
             //comprobem que e ens passen es el mateix
            
-           foreach ($this->llistatAnimals as $animal) {
-                
-                if ($animal->getId() === $id) {
-                    $quantitatNova = $animal->getQuantitat();
-                    $quantitatTotal = $animal->setQuantitat($quantitat + $quantitatNova);
+            foreach ($this->llistatAnimals as $animal) {
+                    
+                    if ($animal->getId() === $id) {
+                        $quantitatNova = $animal->getQuantitat();
+                        $quantitatTotal = $animal->setQuantitat($quantitat + $quantitatNova);
 
-                    return $quantitatTotal;
-                }
+                        return $quantitatTotal;
+                    }
 
-           }
-
+            }
+            return null;
 
         }
 
@@ -129,26 +130,24 @@
         public function mostrarCarret(){
             echo "<br><code>Aquesta es la informació del carret</code><br>";
             //var_dump($this->llistatAnimals);
-            echo "<table border='1' bgcolor='lime'>";
-            echo "<tr>";
+            
 
-            foreach ($this->llistatAnimals as $id) {
-                echo "<td>";
-                echo "<p>ID => ".$id->getId()."</p>";
-                echo "</td>";
+            foreach ($this->llistatAnimals as $parametre) {
+                echo "<div class='lime'>";
+                echo "<form action='./include/canviarQuantitat.php' method=''>";
+                echo "<ul>";
+                echo "<li><p>ID => ".$parametre->getId()."<a href='./include/eliminaAnimalCarret.php' rel='nofollow'><img src='./img/delete_delete_exit_1577.png' width='15' alt='delete' title='delete' type='img/png'></a></p></li></br>";
+                echo "<li><p>Nom => ".$parametre->getNomComu()."</p></li></br>";
+                echo "<li><p>Quantitat => ".$parametre->getQuantitat()."</p></li><br>";
+                echo "<li><p>Donació => ".$parametre->getDonacio()."</p></li><br>";
+                echo "<li><strong style='color: darkblue'>Quantitat: </strong><input type='number' name='canviaQuantitat' min='1' size='5'><input type='submit' value='Canviar quantitat'><br></li><br>";
+                echo "</ul>";
+                echo "</form>";
+                echo "</div>";
+                
             }
 
-            foreach ($this->llistatAnimals as $quantitat) {
-                echo "<td>";
-                echo "<p>Quantitat => ".$quantitat->getQuantitat()."</p><br>";
-                echo "</td>";
-                echo "<td>";
-                echo "<input type='submit' value='Canviar quantitat'><br>";
-                echo "</td>";
-            }
-
-            echo "</tr>";
-            echo "</table>";
+            
         }
 
         public function buidarCarret(){

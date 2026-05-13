@@ -115,11 +115,17 @@
             $c1 = unserialize($_SESSION["carret"]);
 
             //Pas 2. Obtinguem el valor del id del Animal amb el métode getAnimal()
-            $obtenirAnimal = $c1->getAnimal($idDBanimalSessio);
+            $obtenirIdAnimal = $c1->getAnimal(intval($idDBanimalSessio));
+
+            //echo $obtenirIdAnimal; 
+            //echo $c1->getAnimal(intval($idDBanimalSessio));
+            //echo $c1->acumularQuantitatAnimal(intval($idDBanimalSessio), $quantitatSessio);
+            //die();
+
 
             //Pas 3. Depenent de si el id que passem es igual al del métode,
             //increment la quantitat si son iguals o afegim el nou animal al array
-            if ($obtenirAnimal !== null) {
+            if ($obtenirIdAnimal !== null) {
                 //$totalApadrinats = 0;$totalApadrinats
                 $quantitatTotal = $c1->acumularQuantitatAnimal(intval($obtenirIdAnimal),intval($quantitatSessio));
             }else{
@@ -129,7 +135,7 @@
                 $c1->afegirAnimal($nouAnimal);
             }
 
-            //echo $obtenirIdAnimal; 
+            
             //var_dump($c1);
             //die();
 

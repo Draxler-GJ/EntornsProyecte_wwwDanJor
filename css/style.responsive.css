@@ -1,0 +1,17 @@
+/* AQUESTA ES UNA VERSIÓ RESPONSIVE DEL PROYECTE PHP */
+
+/* RESSET */
+*{margin: 0;padding: 0;box-sizing: border-box; transition: 0.75s ease;}
+@import url();
+
+/* VARIABLES CSS */
+:root{
+    --colorPrincipal: #5B10E8;
+    --colorSecundari: #1030E8;
+    --colorTernari: #C810E8;
+    --font: arial;
+}
+
+/* HEADER */
+/* MAIN */
+/* FOOTER */
