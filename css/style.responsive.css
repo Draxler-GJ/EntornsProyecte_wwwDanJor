@@ -2,16 +2,143 @@
 
 /* RESSET */
 *{margin: 0;padding: 0;box-sizing: border-box; transition: 0.75s ease;}
-@import url();
+
+/* FONT ESPECIAL IMPORTADA DE  GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+.paytone-one-regular {
+  font-family: "Paytone One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 /* VARIABLES CSS */
 :root{
     --colorPrincipal: #5B10E8;
     --colorSecundari: #1030E8;
     --colorTernari: #C810E8;
-    --font: arial;
+    --colorEnllaç: #48e9f4;
+    --colorEfecteHover: hsl(148, 85%, 55%);
 }
 
 /* HEADER */
+
+header{
+    background: var(--colorPrincipal);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+nav{
+    background-color: var(--colorSecundari);
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li{list-style-type: none; display: inline-block; text-align: center; margin: 10px;}
+nav a{background-color: var(--colorEnllaç); text-decoration: none;  padding: 5px; border-radius: 10px;}
+
+time{
+    background-color: var(--colorEnllaç);
+    color: var(--colorSecundari);
+    padding: 5px;
+    border-style: 5px solid #fff;
+    border-radius: 5px;
+}
+
 /* MAIN */
+
+main{
+    background: var(--colorTernari);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+}
+
 /* FOOTER */
+
+footer{
+    background: var(--colorPrincipal);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+/* ESTILS CARRET - CANVI ESTIL - LOGIN */
+
+#registre{
+    position: fixed;
+    right: 0;
+    top: 0;
+    background: #fff;
+    padding: 10px;
+}
+
+.login{
+    display: none; 
+    width: 20vw; 
+    background: var(--colorSecundari); 
+    color: var(--colorEnllaç);
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 20%;
+    height: 20vh;
+    border: solid 3px;
+}
+
+.estil-sessio{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 15%;
+    background: var(--colorTernari);
+    border: #000 solid 2px;
+    z-index: 99;
+    display: none;
+}
+
+.carret{background: rgb(220, 151, 151); color: #000; width: 20%; position: absolute; top: 250px; height: 55vh;}
+.carret > ul li {width: 50%; border: 5px dotted #fff;}
+.nocarret{background: rgb(220, 151, 151); color: #000; width: 20%; position: absolute; top: 250px;}
+.lime{background: lime;}
+
+/* TOTS ELS CAMPS DELS DIFERENTS FORMULARIS */
+
+input[type="submit"]{
+    padding: 10px;
+    color: var(--colorTernari);
+    width: 50%;
+}
+
+button{
+    padding: 10px;
+    color: var(--colorTernari);
+    width: 10%;
+}
+
+/* DISSENY RESPONSIVE */
+
+@media screen and (max-width: 599px) {
+    
+}
+
+@media screen and (min-width: 600px ) and (max-width: 799px) {
+    
+}

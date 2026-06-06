@@ -1,5 +1,5 @@
 <span id="registre">Si ja tens un conter: <a href="#" title="Iniciar Sessió" id="enllaç">Inicia Sessió</a><br>
-    Si no:<a href="index.php?id=registre" title="registre">Registrat</a></span>
+    Si no: <a href="index.php?id=registre" title="registre">Registrat</a></span>
 
 <div class="login" id="login">
 

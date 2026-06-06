@@ -1,12 +1,13 @@
 <?php
 
+//Es açi on es comproba que si la variable de sessió existeix mostra el carret vuit 
+// o per el contrari, mostra tots els animals
     echo "<div border='1'>";
 
-        $c1 = unserialize($_SESSION["carret"]);
-
-       if (!isset($_SESSION["carret"])) {
+       if (empty($_SESSION["carret"])) {
             echo "<div><p>El carret es troba vuit</p></div>";
-       }else{
+       }elseif(!empty($_SESSION["carret"])){
+            $c1 = unserialize($_SESSION["carret"]);
             $llistatAnimals = $c1->getLlistatAnimals();
 
             //var_dump($llistatAnimals);

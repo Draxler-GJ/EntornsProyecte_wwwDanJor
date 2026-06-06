@@ -30,10 +30,10 @@
                         echo "<li>Donació -> ".$row["donacio"]."€</li><br>";
                         
                         
-                        if (isset($quantitatTotal)) {
-                            echo "<li>Quantitat -> ".$quantitatSessio."/".$quantitatTotal."</li><br>";
+                        if (isset($_SESSION["total"])) {
+                            echo "<li>Quantitat -> ".$_SESSION["total"]."/".$quantitatTotal."</li><br>";
                         }else{
-                            echo "<li>Quantitat -> ".$quantitatSessio."/".$quantitatSessio."</li><br>";
+                            echo "<li>Quantitat -> ".$_SESSION["quantitatAnimal"]."/".$quantitatSessio."</li><br>";
                         }
 
                         $total = $quantitatSessio * $row["donacio"];
@@ -43,7 +43,8 @@
                 echo "</ul>";
 
                         if(empty($correuDB)){
-                            echo "<strong><small>Usuari: ".session_id()."</small></strong><br>";
+                            //echo "<strong><small>Usuari: ".session_id()."</small></strong><br>";
+                            echo "<strong><small>Usuari no registrat</small></strong><br>";
                             echo "<small>Total Apadrinats: ".$quantitatSessio."</small>";
                         }elseif(!empty($correuDB)){
                             echo "<strong><small>Usuari: ".$correuDB."</small></strong><br>";

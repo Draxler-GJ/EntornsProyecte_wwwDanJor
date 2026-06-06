@@ -125,9 +125,10 @@
 
             //Pas 3. Depenent de si el id que passem es igual al del métode,
             //increment la quantitat si son iguals o afegim el nou animal al array
-            if ($obtenirIdAnimal !== null) {
+            if ($c1->getAnimal(intval($idDBanimalSessio)) !== null) {
                 //$totalApadrinats = 0;$totalApadrinats
-                $quantitatTotal = $c1->acumularQuantitatAnimal(intval($obtenirIdAnimal),intval($quantitatSessio));
+                $_SESSION["total"] = $c1->acumularQuantitatAnimal(intval($obtenirIdAnimal),intval($quantitatSessio));
+                isset($_SESSION["total"])? $quantitatTotal = $_SESSION["total"] : $quantitatTotal = 0; 
             }else{
                 $nouAnimal = nouAnimal($idDBanimalSessio, $quantitatSessio);
                 // $totalApadrinats = 0;
@@ -195,8 +196,9 @@
             echo "<link rel='stylesheet' type='text/css' href='./css/sapphire-style.css'>";
         }elseif(strcmp($estil_actual, "chaos") == 0){
             echo "<link rel='stylesheet' type='text/css' href='./css/chaos-style.css'>";
-        }
-        else{
+        }elseif(strcmp($estil_actual, "responsive") == 0){
+            echo "<link rel='stylesheet' type='text/css' href='./css/style.responsive.css'>";
+        }else{
             echo "<link rel='stylesheet' type='text/css' href='./css/style.css'>";
         }
 
@@ -205,7 +207,7 @@
 
     <script src="./script/script.js"></script>
 </head>
-<body>
+<body class="paytone-one-regular">
     <?php
 
     

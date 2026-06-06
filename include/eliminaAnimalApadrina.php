@@ -2,6 +2,8 @@
 
     declare(strict_types=1);
 
+    //<!-- Pagina que fa el mateix que eliminaAnimalCarret, pero evitar conflictes -->
+
     session_start();
 
     //==============================================================================================
@@ -54,35 +56,9 @@
 
     $_SESSION["carret"] = serialize($c1);
 
-    if(empty($c1->getLlistatAnimals())){
-        //retorna destruint la sessio i tota la informació del carret
-        header("Location: ../index.php?id=apadrina&mostrar=carret");
-        session_destroy();
-        die();
-    }elseif(!empty($c1->getLlistatAnimals())){
-        //retorna sense destruir la sessió
-        header("Location: ../index.php?id=apadrina&mostrar=carret");
-        die();
-    }
-
     
+    //retorna sense destruir la sessió
+    header("Location: ../index.php?id=apadrina&mostrar=apadrina");
+    session_destroy();
+    die();
 
-    // if(!empty($_SESSION["carret"])){
-        
-        //Aço simplemenet es feia per tal de comprobar si existia o no y redireccionar
-
-    // }else{
-        
-    //     header("Location: ../index.php?id=apadrina&mostrar=carret");
-    //     //session_abort(); //Es mantenen les varibles -> no destreuix la sessio
-    //     die();
-    // }
-
-    //Buscar la forma de borrar les dades del carret quant es borren tots els elements
-    //destruir sessió
-
-?>
-
- <!-- usort($array,function($a,$b){ 
-return $a->getParametre() > $b->getParametre();
-});  Per a mes avant-->

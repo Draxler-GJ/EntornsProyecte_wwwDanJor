@@ -200,8 +200,9 @@
             echo "<link rel='stylesheet' type='text/css' href='../css/sapphire-style.css'>";
         }elseif(strcmp($estil_actual, "chaos") == 0){
             echo "<link rel='stylesheet' type='text/css' href='../css/chaos-style.css'>";
-        }
-        else{
+        }elseif(strcmp($estil_actual, "responsive") == 0){
+            echo "<link rel='stylesheet' type='text/css' href='../css/style.responsive.css'>";
+        }else{
             echo "<link rel='stylesheet' type='text/css' href='../css/style.css'>";
         }
 
@@ -209,7 +210,7 @@
     ?>
     <script src="../script/script.js"></script>
 </head>
-<body>
+<body class="paytone-one-regular">
     <?php
         include "partial/css.partial.php";
         include "partial/cap.partial.php";

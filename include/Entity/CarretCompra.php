@@ -42,14 +42,21 @@
             $this->llistatAnimals = $llistatAnimals;
         }
 
+    //============================================================================================================================================
         //Metodes de la clase que per ara no seran instanciats
 
+        /* Afegir animal al array vuit si aquest no existeix en local */
         public function afegirAnimal(Animal $objAnimal){
 
             //primer es comproba el estat del array, si es null
             if($this->llistatAnimals === null){
                 $this->llistatAnimals = [];
             }
+
+            //per ordenar ascendenment
+            usort($this->llistatAnimals, function($a, $b){
+               return $a->getId() > $b->getId();
+            });
 
             //Pasem a comprobar el id que obtinguem de la clase Animal
             $idAnimalPassat = $objAnimal->getId();
@@ -64,18 +71,27 @@
                 array_push($this->llistatAnimals, $objAnimal);
                 //return $llistatAnimals;
             }
+           
         }
 
-        public function eliminarAnimal($id){
+        /* Eliminar un animal del array */
+
+        public function eliminarAnimal(int $id){
             // include "../../db/select_db.php";
-            foreach ($this->llistatAnimals as $id) {
-                array_pop($this->llistatAnimals);
-                //echo "El animal amb id -> ".$id." ha sigut eliminat correctament";
+            foreach ($this->llistatAnimals as $clau => $animal) {
+                if($animal->getId() === $id){
+                    //array_pop($this->llistatAnimals); //borra tot el array
+                    //echo "El animal amb id -> ".$id." ha sigut eliminat correctament";
+                    unset($this->llistatAnimals[$clau]); //elimina la posició marcada si el animal i id son iguals
+                    return; //Si coincideix. borra i acaba de recorrer
+                }
             }
-            
+            //print_r($this->llistatAnimals);
         }
 
-        public function getAnimal($id){
+        /* Métode que obte un animal amb el id que se le passa */
+
+        public function getAnimal(int $id){
             
             foreach($this->llistatAnimals as $animal){
                 if($animal->getId() === $id){
@@ -88,26 +104,27 @@
 
         /*Métode per a acumular la quantitat de animal existensts*/
 
-        public function acumularQuantitatAnimal($id, $quantitat){
+        public function acumularQuantitatAnimal(int $id, int $quantitat){
 
             //$quantitatParcial = 0;
             //comprobem que e ens passen es el mateix
            
-            foreach ($this->llistatAnimals as $animal) {
+            foreach ($this->llistatAnimals as $clau => $animal) {
                     
                     if ($animal->getId() === $id) {
-                        $quantitatNova = $animal->getQuantitat();
-                        $quantitatTotal = $animal->setQuantitat($quantitat + $quantitatNova);
+                        $quantitatAntiga = $this->llistatAnimals[$clau]->getQuantitat();
+                        $this->llistatAnimals[$clau]->setQuantitat($quantitat + $quantitatAntiga);
 
-                        return $quantitatTotal;
                     }
 
             }
-            return null;
+            //return null;
 
         }
 
-        public function canviarQuantitatAnimal($id, $quantitat){
+        /*Métode per a canviar la quantitat de animals apadrinats */
+
+        public function canviarQuantitatAnimal(int $id,int $quantitat){
             //Moodificacions:
             /*
              *Amb l'ajuda de ia per a corregir....
@@ -117,15 +134,17 @@
              * canvia la quantitat amb el metode setQauantitat, en cas de que
              * existisca el animal en el carret
             */
-            foreach ($this->llistatAnimals as $animal) {
+            foreach ($this->llistatAnimals as $clau => $animal) {
                 if ($animal->getId() === $id) {
-                   $animal->setQuantitat($quantitat);
+                   ($this->llistatAnimals[$clau])->setQuantitat($quantitat);
                    return;//Aquest return s'utilitza per a finatlitzar la operació
                    //i que no continue tornar el resultat
                 }
             }
             
         }
+
+        /* Mostrar Dades del Carret */
 
         public function mostrarCarret(){
             echo "<br><code>Aquesta es la informació del carret</code><br>";
@@ -134,15 +153,16 @@
 
             foreach ($this->llistatAnimals as $parametre) {
                 echo "<div class='lime'>";
-                echo "<form action='./include/canviarQuantitat.php' method=''>";
                 echo "<ul>";
-                echo "<li><p>ID => ".$parametre->getId()."<a href='./include/eliminaAnimalCarret.php' rel='nofollow'><img src='./img/delete_delete_exit_1577.png' width='15' alt='delete' title='delete' type='img/png'></a></p></li></br>";
+                echo "<li><p>ID => ".$parametre->getId()."<a href='./include/eliminaAnimalCarret.php?idEliminar=".$parametre->getId()."' rel='nofollow'><img src='./img/delete_delete_exit_1577.png' width='15' alt='delete' title='delete' type='img/png'></a></p></li></br>";
                 echo "<li><p>Nom => ".$parametre->getNomComu()."</p></li></br>";
                 echo "<li><p>Quantitat => ".$parametre->getQuantitat()."</p></li><br>";
-                echo "<li><p>Donació => ".$parametre->getDonacio()."</p></li><br>";
-                echo "<li><strong style='color: darkblue'>Quantitat: </strong><input type='number' name='canviaQuantitat' min='1' size='5'><input type='submit' value='Canviar quantitat'><br></li><br>";
-                echo "</ul>";
+                echo "<li><p>Donació => ".$parametre->getDonacio()." €</p></li><br>";
+                echo "<form action='./include/canviarQuantitat.php' method='POST'>";
+                echo "<input type='hidden' name='idSelect' value='".$parametre->getId()."'>";
+                echo "<li><strong style='color: darkblue'>Quantitat: </strong><input type='number' name='canviarQuantitat' min='1' size='5'><input type='submit' value='Canviar quantitat'><br></li><br>";
                 echo "</form>";
+                echo "</ul>";
                 echo "</div>";
                 
             }
@@ -150,8 +170,28 @@
             
         }
 
+        /* Métode que mostre el les dades dels anmals per a apadrina*/
+
+        public function mostrarApadrina(){
+            
+            foreach ($this->llistatAnimals as $parametre) {
+                echo "<div class='lime'>";
+                echo "<ul>";
+                echo "<li><p>ID => ".$parametre->getId()."<a href='./include/eliminaAnimalApadrina.php?idEliminar=".$parametre->getId()."' rel='nofollow'><img src='./img/delete_delete_exit_1577.png' width='15' alt='delete' title='delete' type='img/png'></a></p></li></br>";
+                echo "<li><p>Nom => ".$parametre->getNomComu()."</p></li></br>";
+                echo "<li><p>Quantitat => ".$parametre->getQuantitat()."</p></li><br>";
+                echo "<li><p>Donació => ".$parametre->getDonacio()." €</p></li><br>";
+                echo "</ul>";
+                echo "</div>";
+                
+            }
+        }
+
+        /* Métode per a buidar el carret */
+
         public function buidarCarret(){
-            unset($llistatAnimals);
+            //array_pop($this->llistatAnimals);
+            $this->llistatAnimals = []; //Per a buidar tot el array
         }
         
 
