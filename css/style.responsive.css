@@ -142,3 +142,8 @@ button{
 @media screen and (min-width: 600px ) and (max-width: 799px) {
     
 }
+
+.insercio_exitosa{
+    background: #f0dd55;
+    color: #000;
+}

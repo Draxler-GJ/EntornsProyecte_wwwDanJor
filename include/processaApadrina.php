@@ -82,7 +82,7 @@
 
     $c1 = unserialize($_SESSION["carret"]);
     
-    echo $_SESSION["carret"]; //Millor crear dos métodes per a inserir en la base de dades.
+    //echo $_SESSION["carret"]; //Millor crear dos métodes per a inserir en la base de dades.
 
     $llistatAnimals = $c1->getLlistatAnimals();
 
@@ -110,25 +110,45 @@
 
     if($idApadrinar >= 1){
         //Incrementar el valor cogiendo el resultado de la consulta
+        $consultaApadrina  = "SELECT MAX(`idapadrina`) FROM `apadrina` ";
+        $idApadrinar += 1;
+
     }else{
         $idApadrinar = 1;
     }
     
+    echo $idApadrinar."<br>";
+
+    //$select_1 = $mysql->query($consultaApadrina);
+
 
     /* CAMP ID USUARI */
 
     $usuariId = $c1->getIdUsuari();
 
+    echo $usuariId."<br>";
+
     $consultaUsuari = "SELECT `id` FROM `usuaris` WHERE `id` = ".$usuariId;
 
     /* CAMP ID APADRINA */
 
-    $animalId = $c1->getAnimal(intval($idDBanimalSessio));
+    $animalId = 0;
+    foreach ($llistatAnimals as $clau => $animal) {
+        $animalId = $animal->getId();
+    }
+    echo $animalId."<br>";
 
     $consultaAnimal = "SELECT `id_animal' FROM `animals` WHERE `id_animal` = ".$animalId;
 
     /* CAMP QUANTITAT */
     //variable de sessió que ve aculumada anteriorment o empara getQuantitat
+
+    $quantitatAIncerir = 0;
+    foreach ($llistatAnimals as $clau => $animal) {
+        $quantitatAIncerir += $animal->getQuantitat();
+    }
+
+    echo $quantitatAIncerir."<br>";
 
     //$quantitatConcreta = $c1->getQuantitat();
 
@@ -144,7 +164,16 @@
 
     //incrementa
     try {
-        ///INSERT INTO apadrina(idpadrina,idusuari,idanimal,quantitatAnimal,donacio_unitaria) VALUES (açi aniran els valors que deurien inserirse)
+        $inserir = "INSERT INTO `apadrina`(idapadrina, idusuari, idanimal, quantitatAnimal, donacio_unitaria) VALUES (".$idApadrinar.",'".(int)substr(md5($usuariId), 0 , 1)."',".$animalId.",".$quantitatAIncerir.",".$donacioTotal.")";
+        //us de la funció crc32() per a convertir un text amb lletres en enter de 32 bits, buscat per intenet
+        //md5() es igula pero amb valors hexadecimals
+        //provat amb subtring(md5(variable del correu, 0 , numero))
+
+        if($mysql -> query($inserir) && !isset($usuariActual)){
+            echo "Inserció correcta";
+        }else{
+            echo "Error: ".$inserir."<br>".$mysql->error;
+        }
     } catch (ErrorInserirException $e) {
         echo $e->getMessage();
     }
@@ -155,17 +184,26 @@
     /* UPDATE -> quant la quantitat siga augmentada, cambiarla*/
 
     try {
-        //UPDATE `animal` SET `quantitat` = `quantitat`+ $quantitatAnimal WHERE `id` = $idAnimal
+        $actualitzar = "UPDATE `animals` SET `quantitat` = `quantitat`+ ".$quantitatSessio." WHERE `id_animal` = ".$idDBanimalSessio;
+
+        if($mysql -> query($actualitzar) === TRUE){
+            echo "Actualizació correcte";
+        }else{
+            echo "Error en el registre ".$actualitzar."<br>".$mysql->error;
+        }
     } catch (ErrorActualitzarException $e) {
         echo $e->getMessage();
     }
 
+    $mysql->close();
+
     serialize($_SESSION["carret"]);
     unset($c1); //Eliminar el carret después de serializar la variable de sessió
 
-    //Una vegada s'ha realitat les opcions actualitzar iredirigir
+    //Una vegada s'ha realitat les opcions actualitzar i inserir, redirigir, fijarse amb el patro inserir= correcte, aixo ens marcara en
+    //processaApadrina que si la inserió i la actualizació han sigut correctes, es mostrara el missatge correponent al document
 
-    // header("Location: ../index.php?id=apadrina&mostrar=apadrina&inserir=correcte");
-    // die();
+    header("Location: ../index.php?id=apadrina&mostrar=apadrina&inserir=correcte");
+    die();
 
 ?>

@@ -26,7 +26,12 @@
                 $c1->mostrarApadrina();
 
                 if (!empty($quantitatSessio)) {
-                    echo "<div><strong>Quantitat d'especies: ".$quantitatSessio."</strong></div>";
+                    
+                    $quantitatApadrina = 0;
+                    foreach ($llistatAnimals as $clau => $animal) {
+                        $quantitatApadrina += $animal->getQuantitat();
+                    }
+                    echo "<div><strong>Quantitat d'especies: ".$quantitatApadrina."</strong></div>";
 
                     //Recorrer i sumar el preu i donació de cada valor
                     $llistatAnimals = $c1->getLlistatAnimals();
@@ -45,7 +50,7 @@
 
         //Si la inserció ha sigut correcta, existeix una variable GET
         if(isset($_GET["inserir"]) && strcmp($_GET["inserir"], "correcte") == 0){
-            echo "<div class='inserir'> L'inserció en la base de dades ha sgut satisfactoria. Les dades han sigut actualizades</div>";
+            echo "<div class='insercio_exitosa'> L'inserció en la base de dades ha sigut satisfactoria. Les dades han sigut actualizades</div>";
         }
 
         //depenent de si el usuari esta registrat o no, camvia l'enllaç per a que es resgitre o puga apadrinar

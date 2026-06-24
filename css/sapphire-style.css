@@ -225,3 +225,8 @@ input[required]:valid,
         left: 80%;
     }
 }
+
+.insercio_exitosa{
+    background: #f0dd55;
+    color: #000;
+}
