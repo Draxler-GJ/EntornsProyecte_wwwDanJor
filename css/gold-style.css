@@ -212,6 +212,18 @@ input[required]:valid,
 .color{background: radial-gradient(#fff, #f00, #fff, #00f);color: #000;}
 .color2{background: radial-gradient(#fff, #ff0, #fff, #0ff);color: #000;}
 
+/*ESTIL PER A LES CASELLES DE LA PAGINACIÓ*/
+
+.paginacio{
+    width: 10%;
+    height: 10%;
+    background: #c183d4;
+    border: 1px #f00 double;
+    padding: 5px;
+    margin: 5px;
+
+}
+
 /*RESPONSIVE*/
 
 @media screen and (max-width: 800px) {

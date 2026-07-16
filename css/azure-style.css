@@ -227,6 +227,18 @@ input[required]:valid,
     color: #193b39;
 }
 
+/*ESTIL PER A LES CASELLES DE LA PAGINACIÓ*/
+
+.paginacio{
+    width: 10%;
+    height: 10%;
+    background: #c183d4;
+    border: 1px #f00 double;
+    padding: 5px;
+    margin: 5px;
+
+}
+
 /*RESPONSIVE*/
 
 @media screen and (max-width: 800px) {

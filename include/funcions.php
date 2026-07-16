@@ -1,5 +1,15 @@
 <?php
     declare(strict_types = 1);
+    //=====================================================================================================
+    /**
+     * Métode que permet canviar imatge de l'usuari 
+    */
+
+    function imatgeBaseDades($correu){
+        echo "$correu elentronic -> proximament";
+        //Canviar en la base de dades usuari imatge pe defcte per una foto d'una mida aprox de 300m
+    }
+
 
     //=====================================================================================================
     /*
@@ -30,31 +40,66 @@
     //Métode per a mostrar a cada formulari de la part apadrina els animals a apadrinar
     //Es fara amb el metode mostrarAnimls() i despreś una altra funció per al formulari
 
+    const REGISTRE_PAGINA = 3;
+
     function mostrarAnimals(){
+
+        isset($_GET["pagina"])? $pagina = $_GET["pagina"] : $pagina = 0;
+        //define("NUM_PAGINES", 5); //varibles i constant per a determinar el total de págines i la paginació
+
+        /**
+         * Dins de les funcions no podem declarar cosntants
+         * Aquestes empren el métode define per a declaralesç
+         * En cas contrari es poden definir fora de la funció
+        */
 
         include "./db/select_db.php";
 
-        $sql = "SELECT * FROM `animals`";
+        //Consulta per establir el total de LIMIT i OFFSET a la taula animals(incorporar mes animals en perill d'extinció)
+                /*
+                    Declaració de variables per a establir el limit
+                    offset. numero de págines, numero de registres
+                */
+
+        //Calcular offset
+        // $offset = intval($paginaActual) * $elementsPagina;
+
+        // $offsetSQL = "SELECT * FROM `animals` LIMIT ".intval($paginaActual)." OFFSET ".$offset;
+
+        //echo $offsetSQL;
+
+        $offset = intval($pagina) * REGISTRE_PAGINA;
+
+
+        $sql = "SELECT * FROM `animals` LIMIT ".REGISTRE_PAGINA." OFFSET ".$offset;
+        /*Antiga setencia -> $sql = "SELECT * FROM `animals`";*/
 
         $consultaAnimals = $mysql -> query($sql);
 
         if($consultaAnimals -> num_rows > 0){
             echo "<div id='taulaDB'>";
             while($row = $consultaAnimals -> fetch_assoc()){
+                echo "<div>";
                 echo "ID -> ". $row['id_animal']."</br>";
                 echo "NOM COMÚ -> ".$row['nom_comu']."</br>";
                 echo "NOM CIENTÍFIC -> ".$row["nom_cientific"]."</br>";
                 echo "DONACIÓ -> ".$row["donacio"]."€</br>";
                 echo "DESCRIPCIÓ -> ".$row["descripcio"]."</br>";
                 mostrarFormulariAnimals($row['id_animal']);
-                echo "</br>"; 
+                echo "</div>";
+                
             }
 
             echo "</div>";
             
         }
 
+        mostrarAnimalsPaginacio($pagina, REGISTRE_PAGINA);
+        
+         $mysql->close();
     }
+
+    //=======================================================================================
 
     function mostrarFormulariAnimals($id){
     
@@ -130,6 +175,86 @@
                 echo "</form>";
                 break;
 
+            case 8:
+                echo "<img src='./img/animalsNous/kakapo.webp' title='loro' alt='loro' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='8'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 9:
+                echo "<img src='./img/animalsNous/olm.jpg' title='olm' alt='olm' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='9'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 10:
+                echo "<img src='./img/animalsNous/quokka.jpg' title='koala' alt='koala' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='10'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 11:
+                echo "<img src='./img/animalsNous/Irrawaddy-dolphin.jpg' title='delfin' alt='delfin' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='11'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 12:
+                echo "<img src='./img/animalsNous/gatopallas.jpeg' title='gato' alt='gato' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='12'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 13:
+                echo "<img src='./img/animalsNous/Saiga.webp' title='saiga' alt='saiga' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='13'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 14:
+                echo "<img src='./img/animalsNous/logo_gris_mex.jpeg' title='lobo' alt='lobo' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='14'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
+            case 15:
+                echo "<img src='./img/animalsNous/capyabeja.webp' title='capy' alt='capy' width='100'>";
+                echo "<form action='./index.php?id=apadrina#carret' method='POST'>";
+                echo "<input type='hidden' name='id_animal' id='".$id."' value='15'>";
+                echo "<label for='quantitatAnimal'>Quantitat: </label>";
+                echo "<input type='number' name='quantitatAnimal' min='1' step='1'>";
+                echo "<button name='enviar' type='submit'>Afegeix al carret</button>";
+                echo "</form>";
+                break;
+
             default:
                 echo "<div><picture>
 
@@ -139,6 +264,85 @@
                 break;
         }
         
+    }
+
+    //=====================================================================================
+    /*
+                Funció de mostrar animals duplicada
+                Aquesta tindra la opció de mostrar la paginació 
+                i poder navegar entre les pàgines que hi hajen el apartat apadrina.partial.php
+    */
+
+    
+
+    function mostrarAnimalsPaginacio($paginaActual, $elementsPagina){
+
+        //Crear dues consultes per a establir el rang de le págines i una latra consulta per veure el total de págines a mostrar
+        include "./db/select_db.php";
+
+        
+        //Consulta per a rebre el total de camps de la taula animals
+
+        $sql = "SELECT COUNT(*) AS `total` FROM `animals`";
+
+        //$pagina = 0;
+        
+        //$numero_re = 0;
+
+        $consultaPagin = $mysql -> query($sql);
+
+        if($consultaPagin -> num_rows > 0){
+            echo "<div id='taulaDB'>";
+            if($row = $consultaPagin -> fetch_assoc()){
+                echo "Quantitat total d'animals: <span>".$row['total']."</span></br>";
+                echo "Elements per pàgina: <span>".$elementsPagina."</span></br>";
+                $num_pagines = ceil($row["total"]/$elementsPagina);//ceil() redondear hacia arriba
+                echo "Total de pàgines: <span>".$num_pagines."</span></br>";
+            }
+
+            echo "</div>";
+
+            echo "<p>Pagina ".(intval($paginaActual) + 1)." de ".$num_pagines."</p>";
+            
+        }
+
+        //falta resposta de raúl per a fer la paginació dins d'aquesta funció en apadrina.partial.php
+        //Seguir apunts per a montar tot el codi
+
+        //Crear els enllaços per a navegar entre págines mes avant es comprobara depnent de la página en la quál treballes
+        //si el enllaç es queda inutilitzat o no
+        
+        //Enllaç Inici i Anterior
+        if(intval($paginaActual) != 0) {
+            echo "<span class='paginacio'><a href='index.php?id=apadrina&pagina=0'>Inici</a></span>";
+            echo "<span class='paginacio'><a href='index.php?id=apadrina&pagina=".(intval($paginaActual) - 1)."'><<</a></span>";
+        }else{
+            echo "<span class='paginacio'>Inici</span>";
+            echo "<span class='paginacio'><<</span>";
+        }
+        
+        //Enllaç dels enllaços dels bucles    
+        for ($i=0; $i < $num_pagines; $i++) { 
+            # per a les págines
+            if(intval($paginaActual) != $i){
+                //echo $i + 1;
+                //die();
+                echo "<span class='paginacio'><a href='index.php?id=apadrina&pagina=".(intval($i))."'>".($i + 1)."</a></span>";
+            }else{
+                echo "<span class='paginacio'>".($i + 1)."</span>";
+            }
+        }
+            
+        //Enllaç Final i Posterior
+        if((intval($paginaActual) + 1) != $num_pagines){
+            echo "<span class='paginacio'><a href='index.php?id=apadrina&pagina=".(intval($paginaActual) + 1)."'>>></a></span>";
+            echo "<span class='paginacio'><a href='index.php?id=apadrina&pagina=".(intval($num_pagines) - 1)."'>Final</a></span>";
+        }else{
+            echo "<span class='paginacio'>>></span>";
+            echo "<span class='paginacio'>Final</span>";
+        }
+
+
     }
 
 

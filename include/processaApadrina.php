@@ -179,7 +179,7 @@
     }
     
 
-    //$c1->buidarCarret(); //EL CARRET ES BUIDA
+    $c1->buidarCarret(); //EL CARRET ES BUIDA
     
     /* UPDATE -> quant la quantitat siga augmentada, cambiarla*/
 

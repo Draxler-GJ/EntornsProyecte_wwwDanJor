@@ -4,6 +4,8 @@
 // o per el contrari, mostra tots els animals
     echo "<div border='1'>";
 
+    
+
        if (empty($_SESSION["carret"])) {
             echo "<div><p>El carret es troba vuit</p></div>";
        }elseif(!empty($_SESSION["carret"])){

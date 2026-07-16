@@ -397,4 +397,5 @@
 </body>
 </html>
 
-<?php include "funcions.php"; registreAccionsUsuari($apartat_accio, $correu_sessioCont, $fitxer_usuari); esborrarSessions();?>
+<?php include "funcions.php"; registreAccionsUsuari($apartat_accio, $correu_sessioCont, $fitxer_usuari); 
+esborrarSessions();?>

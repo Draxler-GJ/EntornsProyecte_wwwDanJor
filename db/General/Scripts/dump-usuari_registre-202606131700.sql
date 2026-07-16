@@ -121,3 +121,21 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2026-06-13 17:00:55
+
+INSERT INTO `animals` (`nom_comu`, `nom_cientific`, `descripcio`, `donacio`) VALUES
+('Kakapo','Strigops habroptilus','És famós per ser l''únic lloro no volador del món, el lloro més pesat i l''únic que té un sistema de cria del tipus lek. També és una de les aus més longeves. Malgrat la seua incapacitat per a volar, va sobreviure a la introducció d''espècies invasores i a la desforestació. Els kakapos són considerats una espècie en perill crític d''extinció, amb 249 exemplars vius reconeguts.',33.00),
+
+('Olm','Proteus anguinus','Les coves són hàbitats atípics on la vida és difícil per l''escassetat de llum, l''alta humitat i els pocs recursos. No obstant això, els olms o proteus, també coneguts com a salamandres albines de les coves, s''han adaptat a aquestes condicions. Són els únics vertebrats europeus adaptats a viure en coves i presenten característiques molt singulars.',20.00),
+
+('Quokka','Setonix brachyurus','És un xicotet marsupial de la grandària d''un gat domèstic. Com altres membres de la família Macropodidae, és herbívor i principalment nocturn. Habita en algunes illes de la costa d''Austràlia Occidental, especialment a l''illa de Rottnest. És conegut pel seu alt grau de sociabilitat i per la seua expressió facial, que li ha valgut el sobrenom de l''animal més feliç del món.',40.00),
+
+('Delfí del riu Irrawaddy','Orcaella brevirostris','Aquesta espècie té un cap arredonit i sense bec. L''aleta dorsal és curta, triangular i està situada cap a la part posterior del cos. Les aletes pectorals són llargues i amples. Presenta una coloració grisenca amb la part inferior més clara que la superior.',25.00),
+
+('Gat de Pallas','Otocolobus manul','El gat de Pallas és un felí salvatge que habita a les zones fredes de l''Àsia Central. Fora del seu hàbitat només es pot observar en zoològics. Tot i que no està en perill crític, la UICN el considera una espècie quasi amenaçada. Té un pelatge llarg i dens que el protegeix de les baixes temperatures.',25.00),
+
+('Saiga','Saiga tatarica','L''antílop saiga és un peculiar mamífer que habita les estepes de l''Àsia Central. A principis del segle XXI la seua població va disminuir dràsticament, passant de prop d''un milió d''exemplars a només uns 40.000. Actualment es duen a terme programes de conservació per a recuperar l''espècie.',45.00),
+
+('Llop gris mexicà','Canis lupus baileyi','El llop gris mexicà és un cànid de grandària mitjana, amb un cos esvelt i robust. Té el cap estret, les orelles grans i rectes i una cua coberta de pèl dens. Els mascles solen ser més grans que les femelles i poden arribar als 1,2 metres de longitud.',25.00),
+
+('Capibara','Hydrochoerus hydrochaeris','Té un cos robust en forma de barril i un cap menut, amb un pelatge marró rogenc que es torna més clar a la part inferior. Pot arribar a fer 1,30 metres de llarg i pesar fins a 65 kg. Té els peus lleugerament palmats, no té cua i és el rosegador més gran del món.',100.00);
+

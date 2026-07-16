@@ -472,4 +472,5 @@
 </html>
 
 <?php //include_once "funcions.php";
- registreAccionsUsuari($apartat_accio, $correu_sessioActual, $fitxer_usuari); esborrarSessions();?>
+ registreAccionsUsuari($apartat_accio, $correu_sessioActual, $fitxer_usuari); 
+ esborrarSessions();?>

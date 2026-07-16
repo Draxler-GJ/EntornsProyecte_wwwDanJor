@@ -28,6 +28,12 @@
 
     //====================================================================================================================================
 
+    //Comprobar si exixteix un parametre que passat per get mostre el enllaç per a canviar foto de perfil
+
+    isset($_GET["perfil"])? $enllasFoto = $_GET["perfil"] : "";
+
+    //====================================================================================================================================
+
      //Guardem les variables de sesió necessaries per al login 
     //que després serań utilitzades
 
@@ -219,7 +225,17 @@
         if(empty($usuariActual)){
             include "include/partial/login.partial.php";
         }elseif(!empty($usuariActual)){
-            echo "<div><img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'> Hola ".$nomActual." <a href='./include/processaLogout.php'>Log Out</a> <img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'></div>";
+            echo "<div>";
+
+            if(isset($enllasFoto)){
+                include 'include/partial/canviaImatge.partial.php';
+            }else{
+                echo "<picture><img src='./img/users/user.jpeg' alt='foto perfil' width='100'></picture><br>";
+                echo "<span><a href='index.php?id=index&perfil=Canvi'>Canviar foto de Perfil</a></span><br>";
+                echo  "<img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'> Hola ".$nomActual." <a href='./include/processaLogout.php'>Log Out</a> <img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'>";
+            }
+
+            echo "</div>";
         }
     ?>
     <?php

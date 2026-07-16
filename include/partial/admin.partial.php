@@ -49,7 +49,31 @@
         }
 
 
+    echo "<hr>";
 
+    //Treballar en json
+
+    $json = fopen("config.json", "r");
+
+    if($json){
+        $jsonObert = fread($json, filesize("config.json"));
+
+        $dadesJson =  json_decode($jsonObert, true);
+
+        echo "<ul>";
+        foreach ($dadesJson["developer"] as $clau => $valor) {
+            # code...
+            echo "<li color='#fff'>".$clau." -> ".$valor."</li><br>";
+        }
+
+        echo "</ul>";
+
+        echo "<strong>Estat del projecte: ".$dadesJson["estat-actual"]."</strong>";
+
+        json_encode($jsonObert);
+    }
+
+    fclose($json);
 
     ?>
 

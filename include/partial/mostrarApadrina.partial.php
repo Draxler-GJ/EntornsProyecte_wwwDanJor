@@ -10,7 +10,7 @@
         echo "<picture>";
 
             echo "<img src='img/images.png' alt='Construcció' title='Constucció'>";
-            echo "<figcaption>Aquesta secsió consistira en gestionar l'apadrinament dels Animals</figcaption>";
+            echo "<figcaption>Aquesta secció consistira en gestionar l'apadrinament dels Animals</figcaption>";
 
         echo "</picture><br>";
 
