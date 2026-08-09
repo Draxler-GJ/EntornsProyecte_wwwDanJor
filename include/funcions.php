@@ -5,9 +5,95 @@
      * Métode que permet canviar imatge de l'usuari 
     */
 
-    function imatgeBaseDades($correu){
-        echo "$correu elentronic -> proximament";
-        //Canviar en la base de dades usuari imatge pe defcte per una foto d'una mida aprox de 300m
+    //Funcio de reserva per traure el frromat del arxiu i poder funcionar a la funcio imatgeBaseDades
+    function comprobarExtensio($tipusExtencio){
+    //Hi ha que tindre en compte el tipus de fitxer si es png, gif o jpg/jpeg
+
+        switch ($tipusExtencio) {
+            case 'image/png':
+                $format = ".png";
+                break;
+            case 'image/jpeg':
+                $format = ".jpeg";
+                break;
+            case 'image/jpg':
+                $format = ".jpg";
+                break;
+            case 'image/gif':
+                $format = ".gif";
+                break;
+            default:
+                echo "el format no es correcte";
+                break;
+        }
+
+        return $format;
+
+    }//Funció que queda fora d'us
+
+    function imatgeBaseDades($correu, $format){
+
+
+        if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
+            $rutaImatge = "../img/users/".$format;
+        }else{
+            $rutaImatge = "./img/users/".$format;
+        }
+        // echo $rutaImatge;
+        // die();
+
+        if(file_exists($rutaImatge)){
+            
+            //Canviar en la base de dades usuari imatge pe defcte per una foto d'una mida aprox de 400kb
+
+            //Realitzar una actualització a la base de dades sobre el camp imatge
+
+            if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
+                include "../db/select_db.php";
+            }else{
+                include "./db/select_db.php";
+            }
+
+            $consulta = "SELECT `imatge_usuari` FROM `usuaris` WHERE `correu_usuari` = '".$correu."'";
+
+            $resultat = $mysql->query($consulta);
+
+            $row = $resultat->fetch_assoc();
+
+            if($resultat->num_rows > 0){
+
+
+                if(strcmp($row["imatge_usuari"], "usuariDefecte.png") == 0){
+                    $actualizar = "UPDATE `usuaris` SET `imatge_usuari` = '".$format."' WHERE `correu_usuari` = '".$correu."'";
+
+                    if($mysql->query($actualizar) === TRUE){
+                        //echo $row["imatge_usuari"];
+                        if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
+                            echo "<picture><img src='../img/users/".$row["imatge_usuari"]."' alt='foto perfil' width='100'></picture><br>";
+                        }else{
+                            echo "<picture><img src='./img/users/".$row["imatge_usuari"]."' alt='foto perfil' width='100'></picture><br>";
+                        }
+                    }
+                }elseif(strcmp($row["imatge_usuari"], "usuariDefecte.png") != 0){
+                    if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
+                        echo "<picture><img src='../img/users/".$row["imatge_usuari"]."' alt='foto perfil' width='100'></picture><br>";
+                    }else{
+                        echo "<picture><img src='./img/users/".$row["imatge_usuari"]."' alt='foto perfil' width='100'></picture><br>";
+                    }
+                }
+                
+            }//Abans de solucionar res, per a solucionar el tema sera guardar en variable de sessio?
+            
+            $mysql->close();
+
+        }else{
+            if(strcmp($_SERVER['PHP_SELF'], "processaContacte.php") == 0 || strcmp($_SERVER['PHP_SELF'], "processaRegistre.php") == 0){
+                echo "<picture><img src='../img/users/usuariDefecte.png' alt='foto perfil' width='100'></picture><br>";
+            }else{
+                echo "<picture><img src='./img/users/usuariDefecte.png' alt='foto perfil' width='100'></picture><br>";
+            }
+        }
+        
     }
 
 

@@ -11,7 +11,7 @@
         <form method='POST' action='./include/processaLogin.php'>
         <?php
 
-        }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp($_SERVER['PHP_SELF'], "processaRegistre.php") == 0){
+        }elseif(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
 
         ?>
         <form method='POST' action='./processaLogin.php'>
