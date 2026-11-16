@@ -4,14 +4,30 @@
 
 session_start();
 
+include "funcions.php";
+
 //echo $_FILES["imatge"]["name"].PHP_EOL;
 //echo $_FILES["imatge"]["size"].PHP_EOL;
 //echo $_FILES["imatge"]["error"].PHP_EOL;
 //echo $_FILES["imatge"]["type"];
 
+//Variable de sessió del correu que ve de PRocessaLogin
+    $correuDB = "";
+    if(isset($_SESSION["correu_usuari"])){
+        $correuDB = $_SESSION["correu_usuari"];
+    }
 
+$usuariActual = $correuDB;
   
-//die();
+//comprobar extensió
+
+$format = comprobarExtensio($_FILES["imatge"]["type"]);
+
+$fotoUsuari = "$usuariActual$format";#Nova forma de concatenació
+
+//echo $fotoUsuari;
+
+// die();
 
 //Açi es fara un altre comprobament del error, probar en javaScript que si no hi ha fitxer es desabilita el boto, en cas de que no, el boto es pot utilitzar
 if($_FILES["imatge"]["error"] == 4){
@@ -38,11 +54,11 @@ if($_FILES["imatge"]["size"] >= 40000){
 
         //Guardar en variable se session per a utilitzar en la funcio
 
-        if(isset($_FILES["imatge"]["name"])){
-            $_SESSION["format"] = $_FILES["imatge"]["name"];
+        if(isset($fotoUsuari)){
+            $_SESSION["format"] = $fotoUsuari;
         }
 
-        move_uploaded_file($_FILES["imatge"]["tmp_name"], "../img/users/".$_FILES["imatge"]["name"]); //buscar aon colocar el arxiu. Mirar apunts
+        move_uploaded_file($_FILES["imatge"]["tmp_name"], "../img/users/".$_SESSION["format"]); //buscar aon colocar el arxiu. Mirar apunts
 
         header("Location: ../index.php?id=index");
         die();

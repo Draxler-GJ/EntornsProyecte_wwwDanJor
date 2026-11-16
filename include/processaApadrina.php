@@ -174,6 +174,7 @@
         }else{
             echo "Error: ".$inserir."<br>".$mysql->error;
         }
+        
     } catch (ErrorInserirException $e) {
         echo $e->getMessage();
     }

@@ -269,21 +269,29 @@
             echo "<div><h2>MATRIU DEL MISSATGE</h2>";
             //per a veure com queda s'utilitzarem la funció random_int per a mostrar ls quantitat random de missatges
             //var_dump($missatgeCom);
-            $random = random_int(0,10);
+            $random = ceil(random_int(0,10));
             //La matriu ens mostrara el missatge partit depenent de la part del missatge
             echo "<table border='1' class='matriu'>";
             
-            for ($i=0; $i < count($missatgeCom); $i++) { 
+            for ($i=0; $i < $random; $i++) { 
                 echo "<tr>";
-                for ($j=0; $j < $random; $j++) {
+                for ($j=0; $j < count($missatgeCom); $j++) {
                     //Estils segons la matriu 
-                    if($random % 2 == 0){
-                        echo "<td class='color'>".$missatgeCom[$i]."</td>";
+                    if($i % 2 == 0 ){
+                        if ($j % 2 == 0) {
+                            echo "<td class='color'> </td>";
+                        } else {
+                            echo "<td class='color'>".$missatgeCom[$j]."</td>";
+                        }
                     }else{
-                        echo "<td class='color2'>".$missatgeCom[$i]."</td>";
+                       if ($j % 2 == 0) {
+                         echo "<td class='color2'>".$missatgeCom[$j]."</td>";
+                       } else {
+                         echo "<td class='color2'> </td>";
+                       }
                     }
 
-                    //Mateixos estils segons la longitud o si son minuscules o mayuscules
+                    //Mateixos estils sego0s la longitud o si son minuscules o mayuscules
                     // if(strlen($missatgeCom[$i]) <= 7){
                     //     echo "<span style='border: solid 1px pink;background: black;color: orange; margin: 2px;'>".$missatgeCom[$i]."</span>";
                     // }elseif($missatgeCom[$i] == "animal" || $missatgeCom[$i] == "apadrinar"){

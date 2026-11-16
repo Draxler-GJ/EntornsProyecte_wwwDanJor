@@ -16,8 +16,8 @@
         ]
     },
 
-    "estat-actual" : "75%",
-    "fase" : "en construció",
+    "estat-actual" : "85%",
+    "fase" : "Pulir errors",
     "llenguatges" : {
         "1" : "PHP",
         "2" : "SQL"

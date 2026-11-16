@@ -30,7 +30,7 @@
 
     //Comprobar si exixteix un parametre que passat per get mostre el enllaç per a canviar foto de perfil
 
-    isset($_GET["perfil"])? $enllasFoto = $_GET["perfil"] : "";
+    isset($_GET["perfil"])? $enllasFoto =  $_GET["perfil"] : "";
 
     //====================================================================================================================================
 
@@ -197,7 +197,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APADRINA A UN ANIMAL</title>
-    <link rel="icon" type="image/x-icon" href="../img/kiwi-background.jpeg">
+    <link rel="icon" type="image/x-icon" href="./img/kiwi-background.jpeg">
      <?php
         $estil = "";
         isset($_POST["estil"])? $estil = $_POST["estil"]: $estil = "";
@@ -243,7 +243,8 @@
             
                 //echo "<picture><img src='./img/users/usuariDefecte.png' alt='foto perfil' width='100'></picture><br>";
                 imatgeBaseDades($usuariActual, $formatImg);
-                echo "<span><a href='index.php?id=index&perfil=Canvi'><span style='background: #0f0; border-radius: 6px; padding: 10px;'>+</span></a>Canviar foto de Perfil</span><br><br>";//processaContacte.php deu fer el mateix?
+                echo"</br>";
+                echo "<span><a href='index.php?id=index&perfil=Canvi'><span style='background: #0f0; border-radius: 300px; padding: 10px; border: 5px solid #0fb'>+</span></a>Canviar foto de Perfil</span><br><br>";//processaContacte.php deu fer el mateix?
                 echo  "<img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'> Hola ".$nomActual." <a href='./include/processaLogout.php'>Log Out</a> <img src='./img/Hybrid-2025_mods-1.0.0.png.128x128_q95_crop.png' width='50'>";
             }
 

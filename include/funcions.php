@@ -29,7 +29,7 @@
 
         return $format;
 
-    }//Funció que queda fora d'us
+    }
 
     function imatgeBaseDades($correu, $format){
 
@@ -74,17 +74,19 @@
                             echo "<picture><img src='./img/users/".$row["imatge_usuari"]."' alt='foto perfil' width='100'></picture><br>";
                         }
                     }
+
                 }elseif(strcmp($row["imatge_usuari"], "usuariDefecte.png") != 0){
+
                     if(strcmp(basename($_SERVER['PHP_SELF']), "processaContacte.php") == 0 || strcmp(basename($_SERVER['PHP_SELF']), "processaRegistre.php") == 0){
                         echo "<picture><img src='../img/users/".$row["imatge_usuari"]."' alt='foto perfil' width='100'></picture><br>";
                     }else{
                         echo "<picture><img src='./img/users/".$row["imatge_usuari"]."' alt='foto perfil' width='100'></picture><br>";
                     }
+                    
                 }
                 
             }//Abans de solucionar res, per a solucionar el tema sera guardar en variable de sessio?
-            
-            $mysql->close();
+            //$mysql->close();
 
         }else{
             if(strcmp($_SERVER['PHP_SELF'], "processaContacte.php") == 0 || strcmp($_SERVER['PHP_SELF'], "processaRegistre.php") == 0){
@@ -93,6 +95,7 @@
                 echo "<picture><img src='./img/users/usuariDefecte.png' alt='foto perfil' width='100'></picture><br>";
             }
         }
+
         
     }
 

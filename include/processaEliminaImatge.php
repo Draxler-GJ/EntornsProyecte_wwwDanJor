@@ -26,7 +26,7 @@ $rutaArxiu = "../img/users/".$formatImg;
 
 //Emprar la funció unlink() per a eliminar la imatge i tornar a tindre la imatge per defecte
 if(file_exists($formatImg)){
-    unlink($formatImg);
+    unlink($rutaArxiu);
 }
 
 //Una vegada la imatge siga eliminada, actualizar la imtage a la de per defecte per a que es mostre en la base de dades 'usuariDefecte.png'.
@@ -58,6 +58,8 @@ if(!file_exists($formatImg)){
             }
         }
     }
+
+    $mysql->close();
 
 }
 
